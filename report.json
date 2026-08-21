@@ -1,253 +1,1040 @@
 {
-  "generatedAt": "2026-08-21T09:20:22.583Z",
-  "root": "/private/tmp/claude-501/-Users-alexandre-gomes-Sites-ctaio/dc96b2b2-5888-4a5c-96ce-0fba0af04e71/scratchpad/tgt",
-  "task": "fix a failing test in the CLI",
-  "score": 54,
-  "wastePct": 0,
-  "wastedTokens": 2000,
+  "generatedAt": "2026-08-21T09:23:22.049Z",
+  "root": "/private/tmp/claude-501/-Users-alexandre-gomes-Sites-ctaio/dc96b2b2-5888-4a5c-96ce-0fba0af04e71/scratchpad/ss2",
+  "task": "add a new swapper integration with tests",
+  "score": 23,
+  "wastePct": 100,
+  "wastedTokens": 553,
   "inventory": {
-    "root": "/private/tmp/claude-501/-Users-alexandre-gomes-Sites-ctaio/dc96b2b2-5888-4a5c-96ce-0fba0af04e71/scratchpad/tgt",
+    "root": "/private/tmp/claude-501/-Users-alexandre-gomes-Sites-ctaio/dc96b2b2-5888-4a5c-96ce-0fba0af04e71/scratchpad/ss2",
     "files": [
       {
-        "path": ".claude/commands/commit-push-pr.md",
+        "path": ".claude/commands/test-agent.md",
         "kind": "skill",
-        "bytes": 795,
-        "estTokens": 199,
-        "lines": 20
+        "bytes": 19025,
+        "estTokens": 4738,
+        "lines": 586
       },
       {
-        "path": ".claude/commands/dedupe.md",
+        "path": ".claude/skills/benchmark-translate/SKILL.md",
         "kind": "skill",
-        "bytes": 1701,
-        "estTokens": 423,
-        "lines": 28
+        "bytes": 6213,
+        "estTokens": 1550,
+        "lines": 141
       },
       {
-        "path": ".claude/commands/triage-issue.md",
+        "path": ".claude/skills/chain-integration-crew/skill.md",
         "kind": "skill",
-        "bytes": 5550,
-        "estTokens": 1378,
+        "bytes": 8442,
+        "estTokens": 1731,
+        "lines": 188
+      },
+      {
+        "path": ".claude/skills/chain-integration/SKILL.md",
+        "kind": "skill",
+        "bytes": 79332,
+        "estTokens": 19779,
+        "lines": 2371
+      },
+      {
+        "path": ".claude/skills/qabot-fixture/SKILL.md",
+        "kind": "skill",
+        "bytes": 3352,
+        "estTokens": 838,
+        "lines": 82
+      },
+      {
+        "path": ".claude/skills/qabot/SKILL.md",
+        "kind": "skill",
+        "bytes": 32732,
+        "estTokens": 8178,
+        "lines": 611
+      },
+      {
+        "path": ".claude/skills/react-best-practices/SKILL.md",
+        "kind": "skill",
+        "bytes": 7938,
+        "estTokens": 1983,
+        "lines": 219
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/react-performance-guidelines.md",
+        "kind": "skill",
+        "bytes": 46890,
+        "estTokens": 11717,
+        "lines": 1866
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/_sections.md",
+        "kind": "skill",
+        "bytes": 1538,
+        "estTokens": 385,
+        "lines": 47
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/_template.md",
+        "kind": "skill",
+        "bytes": 631,
+        "estTokens": 158,
+        "lines": 29
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/advanced-event-handler-refs.md",
+        "kind": "skill",
+        "bytes": 960,
+        "estTokens": 240,
+        "lines": 39
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/advanced-use-latest.md",
+        "kind": "skill",
+        "bytes": 1191,
+        "estTokens": 298,
+        "lines": 50
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/async-api-routes.md",
+        "kind": "skill",
+        "bytes": 1125,
+        "estTokens": 281,
+        "lines": 39
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/async-defer-await.md",
+        "kind": "skill",
+        "bytes": 2028,
+        "estTokens": 507,
+        "lines": 81
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/async-dependencies.md",
+        "kind": "skill",
+        "bytes": 942,
+        "estTokens": 235,
+        "lines": 37
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/async-parallel.md",
+        "kind": "skill",
+        "bytes": 654,
+        "estTokens": 163,
+        "lines": 29
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/async-suspense-boundaries.md",
+        "kind": "skill",
+        "bytes": 1610,
+        "estTokens": 402,
+        "lines": 67
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/bundle-barrel-imports.md",
+        "kind": "skill",
+        "bytes": 2370,
+        "estTokens": 593,
+        "lines": 60
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/bundle-conditional.md",
+        "kind": "skill",
+        "bytes": 870,
+        "estTokens": 218,
+        "lines": 32
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/bundle-defer-third-party.md",
+        "kind": "skill",
+        "bytes": 922,
+        "estTokens": 231,
+        "lines": 50
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/bundle-dynamic-imports.md",
+        "kind": "skill",
+        "bytes": 791,
+        "estTokens": 198,
+        "lines": 36
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/bundle-preload.md",
+        "kind": "skill",
+        "bytes": 1151,
+        "estTokens": 288,
+        "lines": 51
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/client-event-listeners.md",
+        "kind": "skill",
+        "bytes": 1976,
+        "estTokens": 494,
         "lines": 75
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/client-swr-dedup.md",
+        "kind": "skill",
+        "bytes": 1159,
+        "estTokens": 290,
+        "lines": 57
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/js-batch-dom-css.md",
+        "kind": "skill",
+        "bytes": 1902,
+        "estTokens": 476,
+        "lines": 83
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/js-cache-function-results.md",
+        "kind": "skill",
+        "bytes": 1954,
+        "estTokens": 489,
+        "lines": 81
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/js-cache-property-access.md",
+        "kind": "skill",
+        "bytes": 532,
+        "estTokens": 133,
+        "lines": 29
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/js-cache-storage.md",
+        "kind": "skill",
+        "bytes": 1617,
+        "estTokens": 404,
+        "lines": 69
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/js-combine-iterations.md",
+        "kind": "skill",
+        "bytes": 753,
+        "estTokens": 188,
+        "lines": 33
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/js-early-exit.md",
+        "kind": "skill",
+        "bytes": 1133,
+        "estTokens": 283,
+        "lines": 51
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/js-hoist-regexp.md",
+        "kind": "skill",
+        "bytes": 994,
+        "estTokens": 249,
+        "lines": 44
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/js-index-maps.md",
+        "kind": "skill",
+        "bytes": 837,
+        "estTokens": 209,
+        "lines": 38
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/js-length-check-first.md",
+        "kind": "skill",
+        "bytes": 1745,
+        "estTokens": 436,
+        "lines": 50
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/js-min-max-loop.md",
+        "kind": "skill",
+        "bytes": 2105,
+        "estTokens": 526,
+        "lines": 83
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/js-set-map-lookups.md",
+        "kind": "skill",
+        "bytes": 532,
+        "estTokens": 133,
+        "lines": 25
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/js-tosorted-immutable.md",
+        "kind": "skill",
+        "bytes": 1755,
+        "estTokens": 439,
+        "lines": 58
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rendering-activity.md",
+        "kind": "skill",
+        "bytes": 564,
+        "estTokens": 141,
+        "lines": 27
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rendering-animate-svg-wrapper.md",
+        "kind": "skill",
+        "bytes": 1188,
+        "estTokens": 297,
+        "lines": 48
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rendering-conditional-render.md",
+        "kind": "skill",
+        "bytes": 983,
+        "estTokens": 246,
+        "lines": 41
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rendering-content-visibility.md",
+        "kind": "skill",
+        "bytes": 822,
+        "estTokens": 205,
+        "lines": 39
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rendering-hoist-jsx.md",
+        "kind": "skill",
+        "bytes": 819,
+        "estTokens": 205,
+        "lines": 45
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rendering-hydration-no-flicker.md",
+        "kind": "skill",
+        "bytes": 2308,
+        "estTokens": 577,
+        "lines": 83
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rendering-svg-precision.md",
+        "kind": "skill",
+        "bytes": 591,
+        "estTokens": 148,
+        "lines": 29
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rerender-defer-reads.md",
+        "kind": "skill",
+        "bytes": 973,
+        "estTokens": 243,
+        "lines": 40
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rerender-dependencies.md",
+        "kind": "skill",
+        "bytes": 827,
+        "estTokens": 207,
+        "lines": 46
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rerender-derived-state.md",
+        "kind": "skill",
+        "bytes": 724,
+        "estTokens": 181,
+        "lines": 30
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rerender-lazy-state-init.md",
+        "kind": "skill",
+        "bytes": 2016,
+        "estTokens": 504,
+        "lines": 59
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rerender-memo.md",
+        "kind": "skill",
+        "bytes": 935,
+        "estTokens": 234,
+        "lines": 43
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/rerender-transitions.md",
+        "kind": "skill",
+        "bytes": 1055,
+        "estTokens": 264,
+        "lines": 41
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/server-cache-lru.md",
+        "kind": "skill",
+        "bytes": 1011,
+        "estTokens": 253,
+        "lines": 38
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/server-cache-react.md",
+        "kind": "skill",
+        "bytes": 679,
+        "estTokens": 170,
+        "lines": 27
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/server-parallel-fetching.md",
+        "kind": "skill",
+        "bytes": 1511,
+        "estTokens": 378,
+        "lines": 80
+      },
+      {
+        "path": ".claude/skills/react-best-practices/references/rules/server-serialization.md",
+        "kind": "skill",
+        "bytes": 826,
+        "estTokens": 207,
+        "lines": 39
+      },
+      {
+        "path": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+        "kind": "skill",
+        "bytes": 46192,
+        "estTokens": 11260,
+        "lines": 1568
+      },
+      {
+        "path": ".claude/skills/swapper-integration/SKILL.md",
+        "kind": "skill",
+        "bytes": 45802,
+        "estTokens": 11390,
+        "lines": 1257
+      },
+      {
+        "path": ".claude/skills/swapper-integration/common-gotchas.md",
+        "kind": "skill",
+        "bytes": 20334,
+        "estTokens": 5045,
+        "lines": 727
+      },
+      {
+        "path": ".claude/skills/swapper-integration/examples.md",
+        "kind": "skill",
+        "bytes": 4296,
+        "estTokens": 1074,
+        "lines": 48
+      },
+      {
+        "path": ".claude/skills/swapper-integration/reference.md",
+        "kind": "skill",
+        "bytes": 12355,
+        "estTokens": 3067,
+        "lines": 453
+      },
+      {
+        "path": ".claude/skills/translate/SKILL.md",
+        "kind": "skill",
+        "bytes": 18122,
+        "estTokens": 4504,
+        "lines": 385
+      },
+      {
+        "path": ".claude/skills/translate/locales/de.md",
+        "kind": "skill",
+        "bytes": 1471,
+        "estTokens": 365,
+        "lines": 18
+      },
+      {
+        "path": ".claude/skills/translate/locales/es.md",
+        "kind": "skill",
+        "bytes": 656,
+        "estTokens": 162,
+        "lines": 11
+      },
+      {
+        "path": ".claude/skills/translate/locales/fr.md",
+        "kind": "skill",
+        "bytes": 1704,
+        "estTokens": 418,
+        "lines": 18
+      },
+      {
+        "path": ".claude/skills/translate/locales/ja.md",
+        "kind": "skill",
+        "bytes": 1351,
+        "estTokens": 269,
+        "lines": 18
+      },
+      {
+        "path": ".claude/skills/translate/locales/pt.md",
+        "kind": "skill",
+        "bytes": 890,
+        "estTokens": 217,
+        "lines": 13
+      },
+      {
+        "path": ".claude/skills/translate/locales/ru.md",
+        "kind": "skill",
+        "bytes": 1330,
+        "estTokens": 281,
+        "lines": 15
+      },
+      {
+        "path": ".claude/skills/translate/locales/tr.md",
+        "kind": "skill",
+        "bytes": 1470,
+        "estTokens": 360,
+        "lines": 14
+      },
+      {
+        "path": ".claude/skills/translate/locales/uk.md",
+        "kind": "skill",
+        "bytes": 1841,
+        "estTokens": 408,
+        "lines": 18
+      },
+      {
+        "path": ".claude/skills/translate/locales/zh.md",
+        "kind": "skill",
+        "bytes": 981,
+        "estTokens": 218,
+        "lines": 13
+      },
+      {
+        "path": "AGENTS.md",
+        "kind": "always-on",
+        "bytes": 2062,
+        "estTokens": 516,
+        "lines": 41
+      },
+      {
+        "path": "CLAUDE.md",
+        "kind": "always-on",
+        "bytes": 147,
+        "estTokens": 37,
+        "lines": 7
       }
     ],
-    "alwaysOnTokens": 0,
-    "totalTokens": 2000,
+    "alwaysOnTokens": 553,
+    "totalTokens": 103511,
     "staleRefs": [
       {
-        "file": ".claude/commands/dedupe.md",
-        "line": 2,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/dedupe.md",
-        "line": 2,
-        "ref": "./scripts/comment-on-duplicates.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/dedupe.md",
-        "line": 16,
-        "ref": "./scripts/comment-on-duplicates.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/dedupe.md",
-        "line": 21,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/dedupe.md",
-        "line": 22,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/dedupe.md",
-        "line": 23,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/dedupe.md",
-        "line": 24,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/dedupe.md",
-        "line": 25,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/dedupe.md",
-        "line": 26,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 2,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 2,
-        "ref": "./scripts/edit-issue-labels.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 15,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 16,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 17,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 18,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 19,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 20,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 21,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 22,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 23,
-        "ref": "./scripts/edit-issue-labels.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 27,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 28,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 29,
-        "ref": "./scripts/gh.sh",
-        "reason": "referenced path does not exist on disk"
-      },
-      {
-        "file": ".claude/commands/triage-issue.md",
+        "file": ".claude/skills/benchmark-translate/SKILL.md",
         "line": 41,
-        "ref": "./scripts/gh.sh",
+        "ref": "scripts/translations/benchmark/testKeys.json",
         "reason": "referenced path does not exist on disk"
       },
       {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 54,
-        "ref": "./scripts/edit-issue-labels.sh",
+        "file": ".claude/skills/benchmark-translate/SKILL.md",
+        "line": 109,
+        "ref": "scripts/translations/benchmark/ground-truth.json",
         "reason": "referenced path does not exist on disk"
       },
       {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 60,
-        "ref": "./scripts/edit-issue-labels.sh",
+        "file": ".claude/skills/benchmark-translate/SKILL.md",
+        "line": 113,
+        "ref": "src/assets/translations/glossary.json",
         "reason": "referenced path does not exist on disk"
       },
       {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 62,
-        "ref": "./scripts/edit-issue-labels.sh",
+        "file": ".claude/skills/benchmark-translate/SKILL.md",
+        "line": 123,
+        "ref": "scripts/translations/benchmark/report.json",
         "reason": "referenced path does not exist on disk"
       },
       {
-        "file": ".claude/commands/triage-issue.md",
-        "line": 68,
-        "ref": "./scripts/gh.sh",
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 619,
+        "ref": "src/constants/chains.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 958,
+        "ref": "src/hooks/useActionCenterSubscribers/useSendActionSubscriber.tsx",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1007,
+        "ref": "src/lib/account/account.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1014,
+        "ref": "src/hooks/useWalletSupportsChain/useWalletSupportsChain.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1026,
+        "ref": "src/state/slices/portfolioSlice/utils/index.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1109,
+        "ref": "src/plugins/activePlugins.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1120,
+        "ref": "src/context/PluginProvider/PluginProvider.tsx",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1149,
+        "ref": "src/config.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1161,
+        "ref": "src/state/slices/preferencesSlice/preferencesSlice.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1179,
+        "ref": "src/test/mocks/store.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1318,
+        "ref": "scripts/generateAssetData/generateAssetData.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1335,
+        "ref": "scripts/generateAssetData/coingecko.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1497,
+        "ref": "scripts/generateAssetData/color-map.json",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1513,
+        "ref": "src/lib/swapper/constants.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1530,
+        "ref": "scripts/generateAssetData/color-map.json",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1617,
+        "ref": "src/components/TradeAssetSearch/hooks/useGetPopularAssetsQuery.tsx",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1659,
+        "ref": "scripts/generateAssetData/generateRelatedAssetIndex/generateRelatedAssetIndex.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1722,
+        "ref": "src/context/WalletProvider/Ledger/constants.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 1960,
+        "ref": "src/hooks/useWalletSupportsChain/useWalletSupportsChain.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2000,
+        "ref": "scripts/generateAssetData/coingecko.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2019,
+        "ref": "src/lib/asset-service/service/AssetService.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2066,
+        "ref": "src/state/slices/portfolioSlice/utils/index.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2117,
+        "ref": "src/state/slices/portfolioSlice/utils/index.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2295,
+        "ref": "src/constants/chains.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2301,
+        "ref": "src/lib/account/account.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2305,
+        "ref": "src/plugins/activePlugins.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2306,
+        "ref": "src/context/PluginProvider/PluginProvider.tsx",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2307,
+        "ref": "src/hooks/useWalletSupportsChain/useWalletSupportsChain.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2308,
+        "ref": "src/hooks/useActionCenterSubscribers/useSendActionSubscriber.tsx",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2309,
+        "ref": "src/state/slices/portfolioSlice/utils/index.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2315,
+        "ref": "src/config.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2316,
+        "ref": "src/state/slices/preferencesSlice/preferencesSlice.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2317,
+        "ref": "src/test/mocks/store.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2334,
+        "ref": "scripts/generateAssetData/coingecko.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2336,
+        "ref": "scripts/generateAssetData/generateAssetData.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2337,
+        "ref": "src/lib/asset-service/service/AssetService.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/chain-integration/SKILL.md",
+        "line": 2345,
+        "ref": "src/context/WalletProvider/Ledger/constants.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/qabot/SKILL.md",
+        "line": 405,
+        "ref": "src/config.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/qabot/SKILL.md",
+        "line": 405,
+        "ref": "src/constants/chains.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/react-best-practices/references/react-performance-guidelines.md",
+        "line": 360,
+        "ref": "./animation-frames.js",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/react-best-practices/references/rules/bundle-conditional.md",
+        "line": 20,
+        "ref": "./animation-frames.js",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+        "line": 596,
+        "ref": "src/lib/fees/constant.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+        "line": 690,
+        "ref": "src/config.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+        "line": 698,
+        "ref": "src/vite-env.d.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+        "line": 956,
+        "ref": "src/lib/headers/csps/defi/swappers/NearIntents.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+        "line": 967,
+        "ref": "src/lib/headers/csps/index.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+        "line": 983,
+        "ref": "src/components/MultiHopTrade/components/TradeInput/components/SwapperIcon/near-intents-icon.png",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+        "line": 986,
+        "ref": "src/components/MultiHopTrade/components/TradeInput/components/SwapperIcon/SwapperIcon.tsx",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+        "line": 988,
+        "ref": "./near-intents-icon.png",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+        "line": 996,
+        "ref": "src/state/slices/preferencesSlice/preferencesSlice.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+        "line": 1012,
+        "ref": "src/state/helpers.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+        "line": 1497,
+        "ref": "src/lib/fees/constant.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/SKILL.md",
+        "line": 28,
+        "ref": ".claude/skills/swapper-rate-quote-review/SKILL.md",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/SKILL.md",
+        "line": 191,
+        "ref": ".claude/skills/swapper-rate-quote-review/SKILL.md",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/SKILL.md",
+        "line": 914,
+        "ref": "src/state/slices/preferencesSlice/preferencesSlice.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/SKILL.md",
+        "line": 931,
+        "ref": "src/state/helpers.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/SKILL.md",
+        "line": 965,
+        "ref": "src/test/mocks/store.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/SKILL.md",
+        "line": 1009,
+        "ref": "src/config.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/common-gotchas.md",
+        "line": 355,
+        "ref": "src/state/helpers.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/common-gotchas.md",
+        "line": 368,
+        "ref": "src/state/helpers.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/common-gotchas.md",
+        "line": 378,
+        "ref": "src/state/slices/preferencesSlice/preferencesSlice.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/common-gotchas.md",
+        "line": 394,
+        "ref": "src/state/helpers.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/common-gotchas.md",
+        "line": 414,
+        "ref": "src/state/slices/preferencesSlice/preferencesSlice.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/common-gotchas.md",
+        "line": 414,
+        "ref": "src/state/helpers.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/common-gotchas.md",
+        "line": 559,
+        "ref": "src/lib/utils/tron.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/swapper-integration/reference.md",
+        "line": 423,
+        "ref": "src/config.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/translate/SKILL.md",
+        "line": 34,
+        "ref": "scripts/translations/utils.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/translate/SKILL.md",
+        "line": 44,
+        "ref": "src/assets/translations/.last",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/translate/SKILL.md",
+        "line": 55,
+        "ref": "scripts/translations/utils.ts",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/translate/SKILL.md",
+        "line": 89,
+        "ref": "src/assets/translations/glossary.json",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/translate/SKILL.md",
+        "line": 353,
+        "ref": "src/assets/translations/.last",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/translate/SKILL.md",
+        "line": 357,
+        "ref": "src/assets/translations/glossary.json",
+        "reason": "referenced path does not exist on disk"
+      },
+      {
+        "file": ".claude/skills/translate/SKILL.md",
+        "line": 383,
+        "ref": "src/assets/translations/glossary.json",
         "reason": "referenced path does not exist on disk"
       }
     ]
   },
   "simulation": {
-    "task": "fix a failing test in the CLI",
-    "relevantFiles": [],
-    "irrelevantAlwaysOn": [
-      ".claude/commands/commit-push-pr.md",
-      ".claude/commands/dedupe.md",
-      ".claude/commands/triage-issue.md"
+    "task": "add a new swapper integration with tests",
+    "relevantFiles": [
+      ".claude/skills/swapper-integration/SKILL.md",
+      ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+      ".claude/skills/swapper-integration/common-gotchas.md",
+      ".claude/skills/swapper-integration/examples.md",
+      ".claude/skills/swapper-integration/reference.md"
     ],
-    "rationale": "The task is to fix a failing test in the CLI. The three files are skill definitions for unrelated operations (commit/push/pr, deduplication, issue triage). They provide no information about the CLI codebase, test structure, or failure details. Including them would add ~2000 tokens of dead weight with zero relevance."
+    "irrelevantAlwaysOn": [
+      "AGENTS.md",
+      "CLAUDE.md"
+    ],
+    "rationale": "These always-on files are generic project metadata and provide no specific guidance for implementing a new swapper integration or its tests. They are dead weight for this task."
   },
   "findings": [
     {
-      "type": "contradiction",
-      "severity": "high",
-      "title": "Conflicting Git Tooling Requirements",
-      "detail": "The commit-push-pr command explicitly allows and requires the use of raw 'gh' and 'git' commands, whereas the dedupe command strictly forbids them in favor of a local wrapper script.",
+      "type": "duplication",
+      "severity": "medium",
+      "title": "Duplicate React Performance Rules",
+      "detail": "The React performance optimization rules are stated in full in both the SKILL.md and the reference document, creating a maintenance burden where one may become outdated.",
       "citations": [
         {
-          "file": ".claude/commands/commit-push-pr.md",
-          "line": 2,
-          "quote": "allowed-tools: Bash(git checkout --branch:*), Bash(git add:*), Bash(git status:*), Bash(git push:*), Bash(git commit:*), Bash(gh pr create:*)"
+          "file": ".claude/skills/react-best-practices/SKILL.md",
+          "line": 90,
+          "quote": "### 1. Eliminating Waterfalls (CRITICAL)"
         },
         {
-          "file": ".claude/commands/dedupe.md",
-          "line": 21,
-          "quote": "- Use `./scripts/gh.sh` to interact with Github, rather than web fetch or raw `gh`."
+          "file": ".claude/skills/react-best-practices/references/react-performance-guidelines.md",
+          "line": 74,
+          "quote": "## 1. Eliminating Waterfalls"
         }
       ],
       "verdict": "CONFIRMED"
     },
     {
       "type": "overlap",
-      "severity": "medium",
-      "title": "Overlapping Duplicate Issue Detection",
-      "detail": "Both the 'dedupe' and 'triage-issue' commands are tasked with identifying duplicate GitHub issues using the same underlying search tools, creating ambiguity about which command should be used for duplicate management.",
+      "severity": "high",
+      "title": "Overlapping Chain Integration Skills",
+      "detail": "Two separate skills handle blockchain integration. While one is labeled 'Full YOLO E2E', they both cover the same technical domains (HDWallet, adapters, feature flags) without a clear boundary on which should be used for standard tasks.",
       "citations": [
         {
-          "file": ".claude/commands/dedupe.md",
+          "file": ".claude/skills/chain-integration-crew/skill.md",
           "line": 3,
-          "quote": "description: Find duplicate GitHub issues"
+          "quote": "This skill orchestrates a complete end-to-end blockchain integration using a \"crew\" model with specialized agents working in parallel."
         },
         {
-          "file": ".claude/commands/triage-issue.md",
-          "line": 41,
-          "quote": "- Check for duplicates with `./scripts/gh.sh search issues`. Only mark as duplicate of OPEN issues."
+          "file": ".claude/skills/chain-integration/SKILL.md",
+          "line": 13,
+          "quote": "# Chain Integration Skill"
+        }
+      ],
+      "verdict": "CONFIRMED"
+    },
+    {
+      "type": "contradiction",
+      "severity": "medium",
+      "title": "Conflicting Test Scenario Locations",
+      "detail": "The test agent instructions list two different primary locations for test scenarios, which could lead to agents looking in the wrong directory or creating fragmented documentation.",
+      "citations": [
+        {
+          "file": ".claude/commands/test-agent.md",
+          "line": 188,
+          "quote": "- **Primary**: `.claude/test-scenarios/` (local project directory)"
+        },
+        {
+          "file": ".claude/commands/test-agent.md",
+          "line": 189,
+          "quote": "- **Backup**: GitHub repository under `test-scenarios/` folder"
         }
       ],
       "verdict": "CONFIRMED"
@@ -255,37 +1042,37 @@
     {
       "type": "duplication",
       "severity": "low",
-      "title": "Redundant Tool Documentation",
-      "detail": "The usage examples and constraints for the `./scripts/gh.sh` wrapper are duplicated across multiple command files, increasing the risk of documentation drift.",
+      "title": "Redundant API Route Waterfall Examples",
+      "detail": "The exact same code example for preventing waterfalls in API routes is duplicated across the main performance guide and the specific rule file.",
       "citations": [
         {
-          "file": ".claude/commands/dedupe.md",
-          "line": 22,
-          "quote": "- `./scripts/gh.sh issue view 123` — view an issue"
+          "file": ".claude/skills/react-best-practices/references/react-performance-guidelines.md",
+          "line": 191,
+          "quote": "export async function GET(request: Request) {"
         },
         {
-          "file": ".claude/commands/triage-issue.md",
-          "line": 18,
-          "quote": "- `./scripts/gh.sh issue view 123` — read issue title, body, and labels"
+          "file": ".claude/skills/react-best-practices/references/rules/async-api-routes.md",
+          "line": 15,
+          "quote": "export async function GET(request: Request) {"
         }
       ],
       "verdict": "CONFIRMED"
     },
     {
-      "type": "contradiction",
+      "type": "overlap",
       "severity": "medium",
-      "title": "Conflicting Output Constraints",
-      "detail": "The commit-push-pr command forbids any text output other than tool calls, while the dedupe command requires the agent to 'Make a todo list first', which would violate the 'no other text' rule if applied globally.",
+      "title": "Overlapping QA Fixture Creation Skills",
+      "detail": "The 'qabot' skill and 'qabot-fixture' skill both contain instructions for interactively crafting and saving YAML fixtures, creating ambiguity about which skill should handle the 'new test' intent.",
       "citations": [
         {
-          "file": ".claude/commands/commit-push-pr.md",
-          "line": 19,
-          "quote": "Do not send any other text or messages besides these tool calls."
+          "file": ".claude/skills/qabot-fixture/SKILL.md",
+          "line": 3,
+          "quote": "Create a new qabot E2E test fixture interactively. Guides the user through defining test steps, expected outcomes, and saves the YAML fixture file."
         },
         {
-          "file": ".claude/commands/dedupe.md",
-          "line": 27,
-          "quote": "- Make a todo list first"
+          "file": ".claude/skills/qabot/SKILL.md",
+          "line": 46,
+          "quote": "2. **Help craft a fixture** - build a YAML fixture collaboratively with the user"
         }
       ],
       "verdict": "CONFIRMED"
@@ -293,35 +1080,65 @@
   ],
   "actions": [
     {
-      "op": "MOVE",
-      "target": ".claude/commands/commit-push-pr.md",
-      "rationale": "Irrelevant to core coding tasks like fixing tests; should be an on-demand skill to resolve git/gh tool usage contradictions.",
-      "estTokensSaved": 199
+      "op": "MERGE",
+      "target": ".claude/skills/chain-integration/SKILL.md",
+      "rationale": "Consolidate overlapping blockchain integration skills. Fold .claude/skills/chain-integration-crew/skill.md into this main skill to eliminate ambiguity and centralize HDWallet/adapter logic.",
+      "estTokensSaved": 1731
     },
     {
       "op": "MERGE",
-      "target": ".claude/commands/dedupe.md",
-      "rationale": "Folds duplicate issue detection logic into triage-issue.md to resolve overlapping responsibilities and redundant script documentation.",
-      "estTokensSaved": 423
+      "target": ".claude/skills/qabot/SKILL.md",
+      "rationale": "Merge qabot-fixture into the main qabot skill to resolve overlapping instructions for YAML fixture creation and 'new test' intents.",
+      "estTokensSaved": 838
+    },
+    {
+      "op": "MERGE",
+      "target": ".claude/skills/react-best-practices/references/react-performance-guidelines.md",
+      "rationale": "Eliminate duplication where performance rules are stated in full in both the SKILL.md and this reference. Move detailed rules here and keep high-level pointers in SKILL.md.",
+      "estTokensSaved": 1983
+    },
+    {
+      "op": "DELETE",
+      "target": ".claude/skills/react-best-practices/references/rules/async-api-routes.md",
+      "rationale": "Remove redundant API route waterfall examples that are already fully covered in the main performance guide.",
+      "estTokensSaved": 281
+    },
+    {
+      "op": "SCOPE",
+      "target": ".claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md",
+      "rationale": "Restrict this large research file to only trigger when working within the swapper integration subtree to save context tokens during general tasks.",
+      "estTokensSaved": 11260
     },
     {
       "op": "MOVE",
-      "target": ".claude/commands/triage-issue.md",
-      "rationale": "Issue management is not required for local test fixing; moving to on-demand prevents output constraint conflicts and saves significant context.",
-      "estTokensSaved": 1378
+      "target": ".claude/skills/translate/locales/",
+      "rationale": "Move individual locale files (de, es, fr, etc.) to on-demand status; they are only needed during specific translation tasks, not general coding.",
+      "estTokensSaved": 2700
+    },
+    {
+      "op": "KEEP",
+      "target": "CLAUDE.md",
+      "rationale": "Essential project entry point and high-level configuration, despite being small.",
+      "estTokensSaved": 0
+    },
+    {
+      "op": "KEEP",
+      "target": "AGENTS.md",
+      "rationale": "Core orchestration file for agentic behavior; earns its place as always-on context.",
+      "estTokensSaved": 0
     }
   ],
   "pipeline": [
-    "scan: 3 files, 28 stale refs (deterministic)",
-    "mapper(google/gemini-3-flash-preview): 4 raw findings",
-    "simulator(deepseek/deepseek-v4-flash): 3 irrelevant always-on files",
-    "verify: 4 confirmed, 0 killed for unverifiable citations (deterministic)",
-    "architect(google/gemini-3-flash-preview): 3 cleanup actions"
+    "scan: 70 files, 77 stale refs (deterministic)",
+    "mapper(google/gemini-3-flash-preview): 5 raw findings",
+    "simulator(deepseek/deepseek-v4-flash): 2 irrelevant always-on files",
+    "verify: 5 confirmed, 0 killed for unverifiable citations (deterministic)",
+    "architect(google/gemini-3-flash-preview): 8 cleanup actions"
   ],
   "models": {
     "mapper": "google/gemini-3-flash-preview",
     "simulator": "deepseek/deepseek-v4-flash",
     "architect": "google/gemini-3-flash-preview"
   },
-  "elapsedMs": 17939
+  "elapsedMs": 31286
 }

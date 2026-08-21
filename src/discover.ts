@@ -74,6 +74,20 @@ function findStaleRefs(root: string, file: string, text: string): StaleRef[] {
   return out;
 }
 
+/**
+ * A sparse or partial checkout makes every unfetched path look deleted, which
+ * turns the stale-ref check into a false-positive machine — it reported 9
+ * "broken" refs against shapeshift/web that were all present in the real repo.
+ * A deterministic check is only trustworthy if it knows when it's looking at an
+ * incomplete tree, so refuse rather than report numbers we can't stand behind.
+ */
+export function assertFullCheckout(root: string): string | null {
+  if (existsSync(join(root, '.git', 'info', 'sparse-checkout'))) {
+    return 'sparse checkout detected — stale-ref detection needs a full tree';
+  }
+  return null;
+}
+
 export function scan(root: string): Inventory {
   const roots = [join(root, 'CLAUDE.md'), join(root, 'AGENTS.md'), join(root, '.claude')];
   const paths = new Set<string>();

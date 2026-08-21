@@ -2,7 +2,7 @@ import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { MapperOutput, SimulatorOutput, ArchitectOutput } from './contracts.js';
 import type { VerifiedFinding } from './contracts.js';
-import { scan } from './discover.js';
+import { scan, assertFullCheckout } from './discover.js';
 import { callStructured, MODELS } from './llm.js';
 import { verifyFindings } from './verify.js';
 import { renderHtml } from './render.js';
@@ -101,6 +101,11 @@ async function main() {
   const t0 = Date.now();
 
   // ---- STAGE 1: deterministic scan -----------------------------------------
+  const partial = assertFullCheckout(root);
+  if (partial) {
+    console.error(`REFUSING: ${partial}. Re-clone without --sparse/--filter.`);
+    process.exit(2);
+  }
   const inv = scan(root);
   if (inv.files.length === 0) {
     console.error(`No agent context found in ${root} (looked for CLAUDE.md, AGENTS.md, .claude/).`);

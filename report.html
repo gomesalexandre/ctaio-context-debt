@@ -32,69 +32,73 @@ code{font-family:ui-monospace,monospace;font-size:.83em;background:rgba(128,128,
 </style>
 <div class="wrap">
 <h1>Context Debt Report</h1>
-<div class="sub">/private/tmp/claude-501/-Users-alexandre-gomes-Sites-ctaio/dc96b2b2-5888-4a5c-96ce-0fba0af04e71/scratchpad/tgt · 2026-08-21T09:20:22.583Z · 17939ms</div>
+<div class="sub">/private/tmp/claude-501/-Users-alexandre-gomes-Sites-ctaio/dc96b2b2-5888-4a5c-96ce-0fba0af04e71/scratchpad/ss2 · 2026-08-21T09:23:22.049Z · 31286ms</div>
 
 <div class="score">
-  <b>54</b>
+  <b>23</b>
   <div><div style="font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);font-family:ui-sans-serif,system-ui,sans-serif">Context debt score / 100</div>
   <div class="note">Higher is healthier. Computed from measured tokens, verified findings and stale refs — not asked of a model.</div></div>
 </div>
 
 <div class="grid">
-  <div class="stat"><i>0</i><span>Always-on tokens (est.)</span></div>
-  <div class="stat"><i>0%</i><span>Irrelevant to this task</span></div>
-  <div class="stat"><i>28</i><span>Stale references</span></div>
-  <div class="stat"><i>4</i><span>Verified findings</span></div>
+  <div class="stat"><i>553</i><span>Always-on tokens (est.)</span></div>
+  <div class="stat"><i>100%</i><span>Irrelevant to this task</span></div>
+  <div class="stat"><i>77</i><span>Stale references</span></div>
+  <div class="stat"><i>5</i><span>Verified findings</span></div>
   <div class="stat"><i>0</i><span>Hallucinations killed</span></div>
 </div>
 
 <h2>Inventory</h2>
 <div class="scroll"><table>
 <tr><th>Kind</th><th>Files</th><th>Est. tokens</th></tr>
-<tr><td><code>always-on</code></td><td>0</td><td>0</td></tr><tr><td><code>rule</code></td><td>0</td><td>0</td></tr><tr><td><code>agent</code></td><td>0</td><td>0</td></tr><tr><td><code>skill</code></td><td>3</td><td>2,000</td></tr>
+<tr><td><code>always-on</code></td><td>2</td><td>553</td></tr><tr><td><code>rule</code></td><td>0</td><td>0</td></tr><tr><td><code>agent</code></td><td>0</td><td>0</td></tr><tr><td><code>skill</code></td><td>68</td><td>102,958</td></tr>
 </table></div>
 
 <h2>Task simulation</h2>
-<p>For the task <b>&ldquo;fix a failing test in the CLI&rdquo;</b>, <code>deepseek/deepseek-v4-flash</code> judged these always-on files dead weight:</p>
-<p><code>.claude/commands/commit-push-pr.md</code> <code>.claude/commands/dedupe.md</code> <code>.claude/commands/triage-issue.md</code></p>
-<p class="note">The task is to fix a failing test in the CLI. The three files are skill definitions for unrelated operations (commit/push/pr, deduplication, issue triage). They provide no information about the CLI codebase, test structure, or failure details. Including them would add ~2000 tokens of dead weight with zero relevance.</p>
+<p>For the task <b>&ldquo;add a new swapper integration with tests&rdquo;</b>, <code>deepseek/deepseek-v4-flash</code> judged these always-on files dead weight:</p>
+<p><code>AGENTS.md</code> <code>CLAUDE.md</code></p>
+<p class="note">These always-on files are generic project metadata and provide no specific guidance for implementing a new swapper integration or its tests. They are dead weight for this task.</p>
 
 <h2>Verified findings</h2>
-<div class="f" style="--sv:#c0392b">
-<h3><span class="tag">high</span>Conflicting Git Tooling Requirements</h3>
-<div>The commit-push-pr command explicitly allows and requires the use of raw 'gh' and 'git' commands, whereas the dedupe command strictly forbids them in favor of a local wrapper script.</div>
-<div class="cite">✓ .claude/commands/commit-push-pr.md:2 &nbsp;&ldquo;allowed-tools: Bash(git checkout --branch:*), Bash(git add:*), Bash(git status:*), Bash(git push:*), Bash(git commit:*), Bash(gh pr create:*)&rdquo;</div><div class="cite">✓ .claude/commands/dedupe.md:21 &nbsp;&ldquo;- Use `./scripts/gh.sh` to interact with Github, rather than web fetch or raw `gh`.&rdquo;</div>
+<div class="f" style="--sv:#b9770e">
+<h3><span class="tag">medium</span>Duplicate React Performance Rules</h3>
+<div>The React performance optimization rules are stated in full in both the SKILL.md and the reference document, creating a maintenance burden where one may become outdated.</div>
+<div class="cite">✓ .claude/skills/react-best-practices/SKILL.md:90 &nbsp;&ldquo;### 1. Eliminating Waterfalls (CRITICAL)&rdquo;</div><div class="cite">✓ .claude/skills/react-best-practices/references/react-performance-guidelines.md:74 &nbsp;&ldquo;## 1. Eliminating Waterfalls&rdquo;</div>
+</div><div class="f" style="--sv:#c0392b">
+<h3><span class="tag">high</span>Overlapping Chain Integration Skills</h3>
+<div>Two separate skills handle blockchain integration. While one is labeled 'Full YOLO E2E', they both cover the same technical domains (HDWallet, adapters, feature flags) without a clear boundary on which should be used for standard tasks.</div>
+<div class="cite">✓ .claude/skills/chain-integration-crew/skill.md:3 &nbsp;&ldquo;This skill orchestrates a complete end-to-end blockchain integration using a "crew" model with specialized agents working in parallel.&rdquo;</div><div class="cite">✓ .claude/skills/chain-integration/SKILL.md:13 &nbsp;&ldquo;# Chain Integration Skill&rdquo;</div>
 </div><div class="f" style="--sv:#b9770e">
-<h3><span class="tag">medium</span>Overlapping Duplicate Issue Detection</h3>
-<div>Both the 'dedupe' and 'triage-issue' commands are tasked with identifying duplicate GitHub issues using the same underlying search tools, creating ambiguity about which command should be used for duplicate management.</div>
-<div class="cite">✓ .claude/commands/dedupe.md:3 &nbsp;&ldquo;description: Find duplicate GitHub issues&rdquo;</div><div class="cite">✓ .claude/commands/triage-issue.md:41 &nbsp;&ldquo;- Check for duplicates with `./scripts/gh.sh search issues`. Only mark as duplicate of OPEN issues.&rdquo;</div>
+<h3><span class="tag">medium</span>Conflicting Test Scenario Locations</h3>
+<div>The test agent instructions list two different primary locations for test scenarios, which could lead to agents looking in the wrong directory or creating fragmented documentation.</div>
+<div class="cite">✓ .claude/commands/test-agent.md:188 &nbsp;&ldquo;- **Primary**: `.claude/test-scenarios/` (local project directory)&rdquo;</div><div class="cite">✓ .claude/commands/test-agent.md:189 &nbsp;&ldquo;- **Backup**: GitHub repository under `test-scenarios/` folder&rdquo;</div>
 </div><div class="f" style="--sv:#5d6d7e">
-<h3><span class="tag">low</span>Redundant Tool Documentation</h3>
-<div>The usage examples and constraints for the `./scripts/gh.sh` wrapper are duplicated across multiple command files, increasing the risk of documentation drift.</div>
-<div class="cite">✓ .claude/commands/dedupe.md:22 &nbsp;&ldquo;- `./scripts/gh.sh issue view 123` — view an issue&rdquo;</div><div class="cite">✓ .claude/commands/triage-issue.md:18 &nbsp;&ldquo;- `./scripts/gh.sh issue view 123` — read issue title, body, and labels&rdquo;</div>
+<h3><span class="tag">low</span>Redundant API Route Waterfall Examples</h3>
+<div>The exact same code example for preventing waterfalls in API routes is duplicated across the main performance guide and the specific rule file.</div>
+<div class="cite">✓ .claude/skills/react-best-practices/references/react-performance-guidelines.md:191 &nbsp;&ldquo;export async function GET(request: Request) {&rdquo;</div><div class="cite">✓ .claude/skills/react-best-practices/references/rules/async-api-routes.md:15 &nbsp;&ldquo;export async function GET(request: Request) {&rdquo;</div>
 </div><div class="f" style="--sv:#b9770e">
-<h3><span class="tag">medium</span>Conflicting Output Constraints</h3>
-<div>The commit-push-pr command forbids any text output other than tool calls, while the dedupe command requires the agent to 'Make a todo list first', which would violate the 'no other text' rule if applied globally.</div>
-<div class="cite">✓ .claude/commands/commit-push-pr.md:19 &nbsp;&ldquo;Do not send any other text or messages besides these tool calls.&rdquo;</div><div class="cite">✓ .claude/commands/dedupe.md:27 &nbsp;&ldquo;- Make a todo list first&rdquo;</div>
+<h3><span class="tag">medium</span>Overlapping QA Fixture Creation Skills</h3>
+<div>The 'qabot' skill and 'qabot-fixture' skill both contain instructions for interactively crafting and saving YAML fixtures, creating ambiguity about which skill should handle the 'new test' intent.</div>
+<div class="cite">✓ .claude/skills/qabot-fixture/SKILL.md:3 &nbsp;&ldquo;Create a new qabot E2E test fixture interactively. Guides the user through defining test steps, expected outcomes, and saves the YAML fixture file.&rdquo;</div><div class="cite">✓ .claude/skills/qabot/SKILL.md:46 &nbsp;&ldquo;2. **Help craft a fixture** - build a YAML fixture collaboratively with the user&rdquo;</div>
 </div>
 
 
 
 <h2>Stale references</h2>
 <div class="scroll"><table><tr><th>File</th><th>Line</th><th>Broken ref</th></tr>
-<tr><td><code>.claude/commands/dedupe.md</code></td><td>2</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>2</td><td><code>./scripts/comment-on-duplicates.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>16</td><td><code>./scripts/comment-on-duplicates.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>21</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>22</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>23</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>24</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>25</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>26</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>2</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>2</td><td><code>./scripts/edit-issue-labels.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>15</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>16</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>17</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>18</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>19</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>20</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>21</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>22</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>23</td><td><code>./scripts/edit-issue-labels.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>27</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>28</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>29</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>41</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>54</td><td><code>./scripts/edit-issue-labels.sh</code></td></tr>
+<tr><td><code>.claude/skills/benchmark-translate/SKILL.md</code></td><td>41</td><td><code>scripts/translations/benchmark/testKeys.json</code></td></tr><tr><td><code>.claude/skills/benchmark-translate/SKILL.md</code></td><td>109</td><td><code>scripts/translations/benchmark/ground-truth.json</code></td></tr><tr><td><code>.claude/skills/benchmark-translate/SKILL.md</code></td><td>113</td><td><code>src/assets/translations/glossary.json</code></td></tr><tr><td><code>.claude/skills/benchmark-translate/SKILL.md</code></td><td>123</td><td><code>scripts/translations/benchmark/report.json</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>619</td><td><code>src/constants/chains.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>958</td><td><code>src/hooks/useActionCenterSubscribers/useSendActionSubscriber.tsx</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1007</td><td><code>src/lib/account/account.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1014</td><td><code>src/hooks/useWalletSupportsChain/useWalletSupportsChain.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1026</td><td><code>src/state/slices/portfolioSlice/utils/index.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1109</td><td><code>src/plugins/activePlugins.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1120</td><td><code>src/context/PluginProvider/PluginProvider.tsx</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1149</td><td><code>src/config.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1161</td><td><code>src/state/slices/preferencesSlice/preferencesSlice.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1179</td><td><code>src/test/mocks/store.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1318</td><td><code>scripts/generateAssetData/generateAssetData.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1335</td><td><code>scripts/generateAssetData/coingecko.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1497</td><td><code>scripts/generateAssetData/color-map.json</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1513</td><td><code>src/lib/swapper/constants.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1530</td><td><code>scripts/generateAssetData/color-map.json</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1617</td><td><code>src/components/TradeAssetSearch/hooks/useGetPopularAssetsQuery.tsx</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1659</td><td><code>scripts/generateAssetData/generateRelatedAssetIndex/generateRelatedAssetIndex.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1722</td><td><code>src/context/WalletProvider/Ledger/constants.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>1960</td><td><code>src/hooks/useWalletSupportsChain/useWalletSupportsChain.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>2000</td><td><code>scripts/generateAssetData/coingecko.ts</code></td></tr><tr><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>2019</td><td><code>src/lib/asset-service/service/AssetService.ts</code></td></tr>
 </table></div><p class="note">Detected with <code>fs.existsSync</code>. No model involved, nothing to hallucinate.</p>
 
 <h2>Proposed cleanup</h2>
 <div class="scroll"><table><tr><th>Op</th><th>Target</th><th>Rationale</th><th>Est. saved</th></tr>
-<tr><td><span class="op" style="color:var(--accent)">MOVE</span></td><td><code>.claude/commands/commit-push-pr.md</code></td><td>Irrelevant to core coding tasks like fixing tests; should be an on-demand skill to resolve git/gh tool usage contradictions.</td><td>~199</td></tr><tr><td><span class="op" style="color:var(--accent)">MERGE</span></td><td><code>.claude/commands/dedupe.md</code></td><td>Folds duplicate issue detection logic into triage-issue.md to resolve overlapping responsibilities and redundant script documentation.</td><td>~423</td></tr><tr><td><span class="op" style="color:var(--accent)">MOVE</span></td><td><code>.claude/commands/triage-issue.md</code></td><td>Issue management is not required for local test fixing; moving to on-demand prevents output constraint conflicts and saves significant context.</td><td>~1,378</td></tr>
+<tr><td><span class="op" style="color:var(--accent)">MERGE</span></td><td><code>.claude/skills/chain-integration/SKILL.md</code></td><td>Consolidate overlapping blockchain integration skills. Fold .claude/skills/chain-integration-crew/skill.md into this main skill to eliminate ambiguity and centralize HDWallet/adapter logic.</td><td>~1,731</td></tr><tr><td><span class="op" style="color:var(--accent)">MERGE</span></td><td><code>.claude/skills/qabot/SKILL.md</code></td><td>Merge qabot-fixture into the main qabot skill to resolve overlapping instructions for YAML fixture creation and 'new test' intents.</td><td>~838</td></tr><tr><td><span class="op" style="color:var(--accent)">MERGE</span></td><td><code>.claude/skills/react-best-practices/references/react-performance-guidelines.md</code></td><td>Eliminate duplication where performance rules are stated in full in both the SKILL.md and this reference. Move detailed rules here and keep high-level pointers in SKILL.md.</td><td>~1,983</td></tr><tr><td><span class="op" style="color:#c0392b">DELETE</span></td><td><code>.claude/skills/react-best-practices/references/rules/async-api-routes.md</code></td><td>Remove redundant API route waterfall examples that are already fully covered in the main performance guide.</td><td>~281</td></tr><tr><td><span class="op" style="color:var(--accent)">SCOPE</span></td><td><code>.claude/skills/swapper-integration/NEAR_INTENTS_RESEARCH.md</code></td><td>Restrict this large research file to only trigger when working within the swapper integration subtree to save context tokens during general tasks.</td><td>~11,260</td></tr><tr><td><span class="op" style="color:var(--accent)">MOVE</span></td><td><code>.claude/skills/translate/locales/</code></td><td>Move individual locale files (de, es, fr, etc.) to on-demand status; they are only needed during specific translation tasks, not general coding.</td><td>~2,700</td></tr><tr><td><span class="op" style="color:#1e8449">KEEP</span></td><td><code>CLAUDE.md</code></td><td>Essential project entry point and high-level configuration, despite being small.</td><td>—</td></tr><tr><td><span class="op" style="color:#1e8449">KEEP</span></td><td><code>AGENTS.md</code></td><td>Core orchestration file for agentic behavior; earns its place as always-on context.</td><td>—</td></tr>
 </table></div>
 
 <h2>Pipeline trace</h2>
-<div class="pipe">scan: 3 files, 28 stale refs (deterministic)
-mapper(google/gemini-3-flash-preview): 4 raw findings
-simulator(deepseek/deepseek-v4-flash): 3 irrelevant always-on files
-verify: 4 confirmed, 0 killed for unverifiable citations (deterministic)
-architect(google/gemini-3-flash-preview): 3 cleanup actions</div>
+<div class="pipe">scan: 70 files, 77 stale refs (deterministic)
+mapper(google/gemini-3-flash-preview): 5 raw findings
+simulator(deepseek/deepseek-v4-flash): 2 irrelevant always-on files
+verify: 5 confirmed, 0 killed for unverifiable citations (deterministic)
+architect(google/gemini-3-flash-preview): 8 cleanup actions</div>
 <p class="note">Stages 1 and 4 are deterministic. Stages 2, 3 and 5 are models, each under a schema contract, and stage 4 exists to catch stage 2 lying.</p>
 </div>
