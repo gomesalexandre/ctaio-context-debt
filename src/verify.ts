@@ -1,5 +1,6 @@
 import type { Finding, VerifiedFinding } from './contracts.js';
-import { readSnippet } from './discover.js';
+import { readSnippetVfs } from './discover.js';
+import { diskVfs, type Vfs } from './vfs.js';
 
 /**
  * STAGE 3 — THE GATE. Deterministic, no model.
@@ -20,13 +21,13 @@ function norm(s: string) {
   return s.toLowerCase().replace(/\s+/g, ' ').replace(/[`*_"']/g, '').trim();
 }
 
-function quoteAppearsNear(root: string, file: string, line: number, quote: string): boolean {
+function quoteAppearsNearVfs(vfs: Vfs, file: string, line: number, quote: string): boolean {
   const q = norm(quote);
   if (q.length < 8) return false; // too short to be evidence of anything
   // Widen progressively: exact line, then a window, to tolerate off-by-a-few
   // line numbers without tolerating an invented quote.
   for (const span of [2, 8, 25]) {
-    const hay = norm(readSnippet(root, file, line, span).join(' '));
+    const hay = norm(readSnippetVfs(vfs, file, line, span).join(' '));
     if (hay.includes(q)) return true;
     // also accept a strong partial: the first 40 normalized chars
     if (q.length > 40 && hay.includes(q.slice(0, 40))) return true;
@@ -34,12 +35,12 @@ function quoteAppearsNear(root: string, file: string, line: number, quote: strin
   return false;
 }
 
-export function verifyFindings(root: string, findings: Finding[]): VerifiedFinding[] {
+export function verifyFindingsVfs(vfs: Vfs, findings: Finding[]): VerifiedFinding[] {
   return findings.map((f) => {
     const bad: string[] = [];
     for (const c of f.citations) {
-      if (!quoteAppearsNear(root, c.file, c.line, c.quote)) {
-        bad.push(`${c.file}:${c.line} — quoted text not found on disk`);
+      if (!quoteAppearsNearVfs(vfs, c.file, c.line, c.quote)) {
+        bad.push(`${c.file}:${c.line} — quoted text not found`);
       }
     }
     if (bad.length === f.citations.length) {
@@ -54,4 +55,8 @@ export function verifyFindings(root: string, findings: Finding[]): VerifiedFindi
     }
     return { ...f, verdict: 'CONFIRMED' };
   });
+}
+
+export function verifyFindings(root: string, findings: Finding[]): VerifiedFinding[] {
+  return verifyFindingsVfs(diskVfs(root), findings);
 }
