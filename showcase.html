@@ -61,33 +61,40 @@ whether to believe it. It reopens the file and checks the quote. Findings whose 
 there get killed, and the kill list is rendered in the report, because a validation step whose
 output you can't see isn't a validation step.</p>
 
-<h2>Running against Anthropic's own repo</h2>
+<h2>Dogfooded on shapeshift/web</h2>
 
 <figure>
-  <img src="https://files.catbox.moe/zbsdy1.png" alt="Landing page">
-  <figcaption>Paste a public repo. It reads only CLAUDE.md, AGENTS.md and .claude/**.</figcaption>
+  <img src="https://files.catbox.moe/86cfeg.png" alt="Landing page">
+  <figcaption>Paste a public repo. It reads only CLAUDE.md, AGENTS.md and .claude/**. Nothing is cloned.</figcaption>
 </figure>
 
 <figure>
-  <img src="https://files.catbox.moe/cg0dw3.png" alt="Stage tracker mid-run">
+  <img src="https://files.catbox.moe/l8780f.png" alt="Stage tracker mid-run">
   <figcaption>Mid-run. Each stage is labelled deterministic or model, so the handoffs are legible
   instead of hidden behind a spinner. This is the point of the product.</figcaption>
 </figure>
 
 <figure>
-  <img src="https://files.catbox.moe/bpnt67.png" alt="Full report">
+  <img src="https://files.catbox.moe/un4utl.png" alt="Full report">
   <figcaption>Finished report: score, measured tokens, verified findings with citations, kill list,
   cleanup plan.</figcaption>
 </figure>
 
 <figure>
-  <img src="https://files.catbox.moe/y85s2y.png" alt="Error state">
+  <img src="https://files.catbox.moe/o7pylu.png" alt="Error state">
   <figcaption>Failure path. A repo that doesn't exist gets a real message, not a dead spinner.</figcaption>
 </figure>
 
 <h2>What it actually found</h2>
-<p>A genuine <b>HIGH</b> contradiction in <code>anthropics/claude-code</code>, both citations
-machine-verified against the files:</p>
+<p>The wedge, caught live on <code>shapeshift/web</code>. Both citations machine-verified:</p>
+<blockquote>
+<b>Overlapping chain integration skills.</b> <code>chain-integration-crew</code> and
+<code>chain-integration</code> both claim responsibility for integrating a new blockchain, and the
+crew skill spawns an agent that uses the other one, &ldquo;creating a recursive dependency that
+confuses the agent's entry point.&rdquo; Nine skills in that roster, two of them fighting over the
+same job.
+</blockquote>
+<p>And a genuine <b>HIGH</b> contradiction in <code>anthropics/claude-code</code>:</p>
 <blockquote>
 <b>Conflicting git tooling requirements.</b> <code>commit-push-pr.md</code> allows raw <code>gh</code>
 and <code>git</code> in its <code>allowed-tools</code>. <code>dedupe.md:21</code> says
