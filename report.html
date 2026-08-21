@@ -32,18 +32,18 @@ code{font-family:ui-monospace,monospace;font-size:.83em;background:rgba(128,128,
 </style>
 <div class="wrap">
 <h1>Context Debt Report</h1>
-<div class="sub">. · 2026-08-21T09:18:54.183Z · 15415ms</div>
+<div class="sub">/private/tmp/claude-501/-Users-alexandre-gomes-Sites-ctaio/dc96b2b2-5888-4a5c-96ce-0fba0af04e71/scratchpad/tgt · 2026-08-21T09:20:22.583Z · 17939ms</div>
 
 <div class="score">
-  <b>59</b>
+  <b>54</b>
   <div><div style="font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);font-family:ui-sans-serif,system-ui,sans-serif">Context debt score / 100</div>
   <div class="note">Higher is healthier. Computed from measured tokens, verified findings and stale refs — not asked of a model.</div></div>
 </div>
 
 <div class="grid">
-  <div class="stat"><i>370</i><span>Always-on tokens (est.)</span></div>
-  <div class="stat"><i>100%</i><span>Irrelevant to this task</span></div>
-  <div class="stat"><i>0</i><span>Stale references</span></div>
+  <div class="stat"><i>0</i><span>Always-on tokens (est.)</span></div>
+  <div class="stat"><i>0%</i><span>Irrelevant to this task</span></div>
+  <div class="stat"><i>28</i><span>Stale references</span></div>
   <div class="stat"><i>4</i><span>Verified findings</span></div>
   <div class="stat"><i>0</i><span>Hallucinations killed</span></div>
 </div>
@@ -51,48 +51,50 @@ code{font-family:ui-monospace,monospace;font-size:.83em;background:rgba(128,128,
 <h2>Inventory</h2>
 <div class="scroll"><table>
 <tr><th>Kind</th><th>Files</th><th>Est. tokens</th></tr>
-<tr><td><code>always-on</code></td><td>1</td><td>370</td></tr><tr><td><code>rule</code></td><td>0</td><td>0</td></tr><tr><td><code>agent</code></td><td>2</td><td>761</td></tr><tr><td><code>skill</code></td><td>2</td><td>802</td></tr>
+<tr><td><code>always-on</code></td><td>0</td><td>0</td></tr><tr><td><code>rule</code></td><td>0</td><td>0</td></tr><tr><td><code>agent</code></td><td>0</td><td>0</td></tr><tr><td><code>skill</code></td><td>3</td><td>2,000</td></tr>
 </table></div>
 
 <h2>Task simulation</h2>
-<p>For the task <b>&ldquo;add an authenticated API route with tests&rdquo;</b>, <code>deepseek/deepseek-v4-flash</code> judged these always-on files dead weight:</p>
-<p><code>CLAUDE.md</code></p>
-<p class="note">The task is a concrete implementation task. The agent and skill files are meta-level (critique, skepticism, planning, shipping checks) and do not inform how to write an API route or tests. CLAUDE.md is the only always-on file; it may contain project-specific conventions (e.g., authentication middleware, testing framework) that are directly relevant. However, per the instruction to be strict, even CLAUDE.md is likely dead weight for this single task unless it explicitly documents the authentication pattern or test setup. Given the inventory, no file is genuinely informative, but CLAUDE.md is the only candidate.</p>
+<p>For the task <b>&ldquo;fix a failing test in the CLI&rdquo;</b>, <code>deepseek/deepseek-v4-flash</code> judged these always-on files dead weight:</p>
+<p><code>.claude/commands/commit-push-pr.md</code> <code>.claude/commands/dedupe.md</code> <code>.claude/commands/triage-issue.md</code></p>
+<p class="note">The task is to fix a failing test in the CLI. The three files are skill definitions for unrelated operations (commit/push/pr, deduplication, issue triage). They provide no information about the CLI codebase, test structure, or failure details. Including them would add ~2000 tokens of dead weight with zero relevance.</p>
 
 <h2>Verified findings</h2>
-<div class="f" style="--sv:#b9770e">
-<h3><span class="tag">medium</span>Overlapping Agent and Skill Responsibilities</h3>
-<div>The 'skeptic' agent and 'ship-check' skill both claim the remit of adversarial review and checking implementation before submission, creating ambiguity about which should lead the process.</div>
-<div class="cite">✓ .claude/agents/skeptic.md:3 &nbsp;&ldquo;description: Adversarially reviews the implementation and agent workflow before submission. Use during ship-check. Returns BLOCKER / IMPORTANT / NICE-&rdquo;</div><div class="cite">✓ .claude/skills/ship-check/SKILL.md:3 &nbsp;&ldquo;description: Pre-submission gate for the 40-min challenge — build/typecheck, exercise the real workflow, adversarial review, autonomous browser test, &rdquo;</div>
-</div><div class="f" style="--sv:#5d6d7e">
-<h3><span class="tag">low</span>Duplicated Validation Requirements</h3>
-<div>The requirement to validate LLM outputs and avoid 'vibes-based' or raw text consumption is stated in both the global CLAUDE.md and the specific skeptic agent instructions.</div>
-<div class="cite">✓ CLAUDE.md:12 &nbsp;&ldquo;4. **Validate generated outputs** — parse/schema-check every LLM output; retry-or-fallback on invalid. Never trust raw model text downstream.&rdquo;</div><div class="cite">✓ .claude/agents/skeptic.md:13 &nbsp;&ldquo;3. **Poor validation** — LLM output consumed without parsing/schema checks, silent catch-and-continue, no fallback on invalid output.&rdquo;</div>
-</div><div class="f" style="--sv:#5d6d7e">
-<h3><span class="tag">low</span>Redundant Planning Time Constraints</h3>
-<div>The 3-5 minute planning window is defined in both the skill description and the skill's internal rules, creating redundant instructions for the same task.</div>
-<div class="cite">✓ .claude/skills/challenge-plan/SKILL.md:3 &nbsp;&ldquo;description: Rapid planning for the 40-min challenge — requirements → idea → architecture → acceptance criteria → implementation order. Target 3-5 min&rdquo;</div><div class="cite">✓ .claude/skills/challenge-plan/SKILL.md:21 &nbsp;&ldquo;- If planning exceeds 5 minutes, ship the current plan as-is.&rdquo;</div>
+<div class="f" style="--sv:#c0392b">
+<h3><span class="tag">high</span>Conflicting Git Tooling Requirements</h3>
+<div>The commit-push-pr command explicitly allows and requires the use of raw 'gh' and 'git' commands, whereas the dedupe command strictly forbids them in favor of a local wrapper script.</div>
+<div class="cite">✓ .claude/commands/commit-push-pr.md:2 &nbsp;&ldquo;allowed-tools: Bash(git checkout --branch:*), Bash(git add:*), Bash(git status:*), Bash(git push:*), Bash(git commit:*), Bash(gh pr create:*)&rdquo;</div><div class="cite">✓ .claude/commands/dedupe.md:21 &nbsp;&ldquo;- Use `./scripts/gh.sh` to interact with Github, rather than web fetch or raw `gh`.&rdquo;</div>
 </div><div class="f" style="--sv:#b9770e">
-<h3><span class="tag">medium</span>Contradictory Planning Duration</h3>
-<div>CLAUDE.md limits initial requirement inspection to 2-3 minutes, whereas the challenge-plan skill (which CLAUDE.md directs the user to use) allocates 5 minutes for the same phase.</div>
-<div class="cite">✓ CLAUDE.md:9 &nbsp;&ldquo;1. **Inspect requirements first** (2-3 min max) — read the brief fully before writing any code. Use `challenge-plan` skill.&rdquo;</div><div class="cite">✓ .claude/skills/challenge-plan/SKILL.md:8 &nbsp;&ldquo;Planning is a 3-5 minute sprint, not a document. Output goes at the top of CHALLENGE_LOG.md.&rdquo;</div>
+<h3><span class="tag">medium</span>Overlapping Duplicate Issue Detection</h3>
+<div>Both the 'dedupe' and 'triage-issue' commands are tasked with identifying duplicate GitHub issues using the same underlying search tools, creating ambiguity about which command should be used for duplicate management.</div>
+<div class="cite">✓ .claude/commands/dedupe.md:3 &nbsp;&ldquo;description: Find duplicate GitHub issues&rdquo;</div><div class="cite">✓ .claude/commands/triage-issue.md:41 &nbsp;&ldquo;- Check for duplicates with `./scripts/gh.sh search issues`. Only mark as duplicate of OPEN issues.&rdquo;</div>
+</div><div class="f" style="--sv:#5d6d7e">
+<h3><span class="tag">low</span>Redundant Tool Documentation</h3>
+<div>The usage examples and constraints for the `./scripts/gh.sh` wrapper are duplicated across multiple command files, increasing the risk of documentation drift.</div>
+<div class="cite">✓ .claude/commands/dedupe.md:22 &nbsp;&ldquo;- `./scripts/gh.sh issue view 123` — view an issue&rdquo;</div><div class="cite">✓ .claude/commands/triage-issue.md:18 &nbsp;&ldquo;- `./scripts/gh.sh issue view 123` — read issue title, body, and labels&rdquo;</div>
+</div><div class="f" style="--sv:#b9770e">
+<h3><span class="tag">medium</span>Conflicting Output Constraints</h3>
+<div>The commit-push-pr command forbids any text output other than tool calls, while the dedupe command requires the agent to 'Make a todo list first', which would violate the 'no other text' rule if applied globally.</div>
+<div class="cite">✓ .claude/commands/commit-push-pr.md:19 &nbsp;&ldquo;Do not send any other text or messages besides these tool calls.&rdquo;</div><div class="cite">✓ .claude/commands/dedupe.md:27 &nbsp;&ldquo;- Make a todo list first&rdquo;</div>
 </div>
 
 
 
 <h2>Stale references</h2>
-<p class="note">None — every referenced path resolves.</p>
+<div class="scroll"><table><tr><th>File</th><th>Line</th><th>Broken ref</th></tr>
+<tr><td><code>.claude/commands/dedupe.md</code></td><td>2</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>2</td><td><code>./scripts/comment-on-duplicates.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>16</td><td><code>./scripts/comment-on-duplicates.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>21</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>22</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>23</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>24</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>25</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/dedupe.md</code></td><td>26</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>2</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>2</td><td><code>./scripts/edit-issue-labels.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>15</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>16</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>17</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>18</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>19</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>20</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>21</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>22</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>23</td><td><code>./scripts/edit-issue-labels.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>27</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>28</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>29</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>41</td><td><code>./scripts/gh.sh</code></td></tr><tr><td><code>.claude/commands/triage-issue.md</code></td><td>54</td><td><code>./scripts/edit-issue-labels.sh</code></td></tr>
+</table></div><p class="note">Detected with <code>fs.existsSync</code>. No model involved, nothing to hallucinate.</p>
 
 <h2>Proposed cleanup</h2>
 <div class="scroll"><table><tr><th>Op</th><th>Target</th><th>Rationale</th><th>Est. saved</th></tr>
-<tr><td><span class="op" style="color:var(--accent)">MERGE</span></td><td><code>.claude/agents/skeptic.md</code></td><td>Consolidate adversarial review logic by merging skeptic agent into ship-check skill to resolve remit ambiguity and remove redundant validation rules.</td><td>~400</td></tr><tr><td><span class="op" style="color:var(--accent)">SCOPE</span></td><td><code>CLAUDE.md</code></td><td>Restrict to high-level project identity; remove redundant validation requirements and contradictory planning durations that conflict with specific skills.</td><td>~120</td></tr><tr><td><span class="op" style="color:var(--accent)">MOVE</span></td><td><code>.claude/agents/idea-critic.md</code></td><td>Convert from always-on agent to an on-demand skill for architectural review, as it is irrelevant for standard implementation tasks like API routing.</td><td>~361</td></tr><tr><td><span class="op" style="color:#1e8449">KEEP</span></td><td><code>.claude/skills/challenge-plan/SKILL.md</code></td><td>Essential for structured task decomposition, though internal rules should be deduplicated to fix the 3-5 minute redundancy.</td><td>~50</td></tr><tr><td><span class="op" style="color:#1e8449">KEEP</span></td><td><code>.claude/skills/ship-check/SKILL.md</code></td><td>Primary mechanism for pre-submission verification; will absorb skeptic agent logic to become the single source of truth for adversarial review.</td><td>—</td></tr>
+<tr><td><span class="op" style="color:var(--accent)">MOVE</span></td><td><code>.claude/commands/commit-push-pr.md</code></td><td>Irrelevant to core coding tasks like fixing tests; should be an on-demand skill to resolve git/gh tool usage contradictions.</td><td>~199</td></tr><tr><td><span class="op" style="color:var(--accent)">MERGE</span></td><td><code>.claude/commands/dedupe.md</code></td><td>Folds duplicate issue detection logic into triage-issue.md to resolve overlapping responsibilities and redundant script documentation.</td><td>~423</td></tr><tr><td><span class="op" style="color:var(--accent)">MOVE</span></td><td><code>.claude/commands/triage-issue.md</code></td><td>Issue management is not required for local test fixing; moving to on-demand prevents output constraint conflicts and saves significant context.</td><td>~1,378</td></tr>
 </table></div>
 
 <h2>Pipeline trace</h2>
-<div class="pipe">scan: 5 files, 0 stale refs (deterministic)
+<div class="pipe">scan: 3 files, 28 stale refs (deterministic)
 mapper(google/gemini-3-flash-preview): 4 raw findings
-simulator(deepseek/deepseek-v4-flash): 1 irrelevant always-on files
+simulator(deepseek/deepseek-v4-flash): 3 irrelevant always-on files
 verify: 4 confirmed, 0 killed for unverifiable citations (deterministic)
-architect(google/gemini-3-flash-preview): 5 cleanup actions</div>
+architect(google/gemini-3-flash-preview): 3 cleanup actions</div>
 <p class="note">Stages 1 and 4 are deterministic. Stages 2, 3 and 5 are models, each under a schema contract, and stage 4 exists to catch stage 2 lying.</p>
 </div>

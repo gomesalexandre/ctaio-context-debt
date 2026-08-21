@@ -34,7 +34,10 @@ function classify(root: string, path: string): FileKind | null {
   const base = rel.split('/').pop() ?? '';
   if (base === 'CLAUDE.md' || base === 'AGENTS.md') return 'always-on';
   if (rel.includes('.claude/agents/')) return 'agent';
-  if (rel.includes('.claude/skills/')) return 'skill';
+  // Commands and skills are both on-demand context: pulled in when invoked,
+  // not resident every turn. Missing this bucket made any repo that organises
+  // its context as slash-commands scan as completely empty.
+  if (rel.includes('.claude/skills/') || rel.includes('.claude/commands/')) return 'skill';
   if (rel.includes('.claude/rules/') || rel.includes('rules/')) return 'rule';
   return null;
 }
