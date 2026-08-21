@@ -55,11 +55,26 @@ export function assertFullCheckout(root: string): string | null {
  * entirely rather than reported as broken — that would be a guaranteed false
  * positive, not a real finding.
  */
-function findStaleRefsVfs(vfs: Vfs, file: string, text: string): StaleRef[] {
+function findStaleRefsVfs(
+  vfs: Vfs,
+  file: string,
+  text: string,
+  existsExtra?: (p: string) => boolean,
+): StaleRef[] {
   const out: StaleRef[] = [];
   const known = new Set(vfs.list());
-  const hasPath = (ref: string) =>
-    ref.endsWith('/') ? [...known].some((p) => p.startsWith(ref)) : known.has(ref);
+  // The vfs only ever holds .md files, so membership alone says nothing about a
+  // reference to a .ts or .sh. Without `existsExtra` every non-markdown ref in a
+  // repo gets reported broken: 16 of 17 "stale" refs in delta-app were real
+  // files sitting on disk. Callers that CAN see the wider tree (a local scan, a
+  // GitHub tree listing) pass a predicate; only when neither the vfs nor that
+  // predicate knows the path do we call it stale.
+  const hasPath = (ref: string) => {
+    const inVfs = ref.endsWith('/')
+      ? [...known].some((p) => p.startsWith(ref))
+      : known.has(ref);
+    return inVfs || (existsExtra ? existsExtra(ref) : false);
+  };
 
   text.split('\n').forEach((line, i) => {
     if (line.trimStart().startsWith('>')) return; // quoted example, not a live ref
@@ -85,7 +100,11 @@ function findStaleRefsVfs(vfs: Vfs, file: string, text: string): StaleRef[] {
   return out;
 }
 
-export function scanVfs(vfs: Vfs, label: string): Inventory {
+export function scanVfs(
+  vfs: Vfs,
+  label: string,
+  existsExtra?: (p: string) => boolean,
+): Inventory {
   const files: ScannedFile[] = [];
   const staleRefs: StaleRef[] = [];
 
@@ -101,7 +120,7 @@ export function scanVfs(vfs: Vfs, label: string): Inventory {
       estTokens: estTokens(text),
       lines: text.split('\n').length,
     });
-    staleRefs.push(...findStaleRefsVfs(vfs, p, text));
+    staleRefs.push(...findStaleRefsVfs(vfs, p, text, existsExtra));
   }
 
   const alwaysOnTokens = files
@@ -125,7 +144,9 @@ export function readSnippetVfs(vfs: Vfs, file: string, line: number, span = 2): 
 }
 
 export function scan(root: string): Inventory {
-  return scanVfs(diskVfs(root), root);
+  // A local scan can see the whole working tree, not just the markdown the vfs
+  // holds, so a reference to a .ts or .sh is checked against the real disk.
+  return scanVfs(diskVfs(root), root, (p) => existsSync(join(root, p)));
 }
 
 export function readSnippet(root: string, file: string, line: number, span = 2): string[] {

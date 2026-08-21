@@ -32,18 +32,18 @@ code{font-family:ui-monospace,monospace;font-size:.83em;background:rgba(128,128,
 </style>
 <div class="wrap">
 <h1>Context Debt Report</h1>
-<div class="sub">. · 2026-08-21T09:28:57.104Z · 9029ms</div>
+<div class="sub">/Users/alexandre.gomes/Sites/delta-app · 2026-08-21T11:26:58.934Z · 8070ms</div>
 
 <div class="score">
-  <b>59</b>
+  <b>74</b>
   <div><div style="font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);font-family:ui-sans-serif,system-ui,sans-serif">Context debt score / 100</div>
   <div class="note">Higher is healthier. Computed from measured tokens, verified findings and stale refs — not asked of a model.</div></div>
 </div>
 
 <div class="grid">
-  <div class="stat"><i>370</i><span>Always-on tokens (est.)</span></div>
-  <div class="stat"><i>100%</i><span>Irrelevant to this task</span></div>
-  <div class="stat"><i>0</i><span>Stale references</span></div>
+  <div class="stat"><i>6,477</i><span>Always-on tokens (est.)</span></div>
+  <div class="stat"><i>0%</i><span>Irrelevant to this task</span></div>
+  <div class="stat"><i>1</i><span>Stale references</span></div>
   <div class="stat"><i>4</i><span>Verified findings</span></div>
   <div class="stat"><i>0</i><span>Hallucinations killed</span></div>
 </div>
@@ -51,48 +51,50 @@ code{font-family:ui-monospace,monospace;font-size:.83em;background:rgba(128,128,
 <h2>Inventory</h2>
 <div class="scroll"><table>
 <tr><th>Kind</th><th>Files</th><th>Est. tokens</th></tr>
-<tr><td><code>always-on</code></td><td>1</td><td>370</td></tr><tr><td><code>rule</code></td><td>0</td><td>0</td></tr><tr><td><code>agent</code></td><td>2</td><td>761</td></tr><tr><td><code>skill</code></td><td>2</td><td>802</td></tr>
+<tr><td><code>always-on</code></td><td>2</td><td>6,477</td></tr><tr><td><code>rule</code></td><td>0</td><td>0</td></tr><tr><td><code>agent</code></td><td>0</td><td>0</td></tr><tr><td><code>skill</code></td><td>0</td><td>0</td></tr>
 </table></div>
 
 <h2>Task simulation</h2>
-<p>For the task <b>&ldquo;test task&rdquo;</b>, <code>deepseek/deepseek-v4-flash</code> judged these always-on files dead weight:</p>
-<p><code>CLAUDE.md</code></p>
-<p class="note">The task is a generic 'test task' with no specific domain, goal, or context. None of the files in the inventory provide any information about what the task actually entails. The always-on file CLAUDE.md is irrelevant because there is no concrete problem to solve, no codebase to navigate, and no decision to make. All agent and skill files are also irrelevant as they are designed for specific workflows (idea critique, skepticism, challenge planning, shipping checks) that have no connection to an undefined test task.</p>
+<p>For the task <b>&ldquo;add a new marker with tests&rdquo;</b>, <code>deepseek/deepseek-v4-flash</code> judged these always-on files dead weight:</p>
+<p><span class="note">none</span></p>
+<p class="note">Both always-on files are relevant. AGENTS.md likely contains the project's marker system architecture and conventions. CLAUDE.md likely contains the testing patterns and standards for adding new markers. For a task that involves both adding a new marker and writing tests, both files provide essential context about how to implement and test correctly within the project's established patterns.</p>
 
 <h2>Verified findings</h2>
 <div class="f" style="--sv:#b9770e">
-<h3><span class="tag">medium</span>Overlapping Agent and Skill Responsibilities</h3>
-<div>The 'skeptic' agent and 'ship-check' skill both claim the remit of adversarial review and checking implementation before submission, creating ambiguity about which should lead the process.</div>
-<div class="cite">✓ .claude/agents/skeptic.md:3 &nbsp;&ldquo;description: Adversarially reviews the implementation and agent workflow before submission. Use during ship-check. Returns BLOCKER / IMPORTANT / NICE-&rdquo;</div><div class="cite">✓ .claude/skills/ship-check/SKILL.md:3 &nbsp;&ldquo;description: Pre-submission gate for the 40-min challenge — build/typecheck, exercise the real workflow, adversarial review, autonomous browser test, &rdquo;</div>
+<h3><span class="tag">medium</span>Duplicated Beads Issue Tracker Instructions</h3>
+<div>The entire Beads integration block, including quick reference commands, rules, and session completion protocols, is duplicated across both AGENTS.md and CLAUDE.md, increasing context noise.</div>
+<div class="cite">✓ AGENTS.md:176 &nbsp;&ldquo;## Beads Issue Tracker&rdquo;</div><div class="cite">✓ CLAUDE.md:192 &nbsp;&ldquo;## Beads Issue Tracker&rdquo;</div>
 </div><div class="f" style="--sv:#5d6d7e">
-<h3><span class="tag">low</span>Duplicated Validation Requirements</h3>
-<div>The requirement to validate LLM outputs and avoid 'vibes-based' or raw text consumption is stated in both the global CLAUDE.md and the specific skeptic agent instructions.</div>
-<div class="cite">✓ CLAUDE.md:12 &nbsp;&ldquo;4. **Validate generated outputs** — parse/schema-check every LLM output; retry-or-fallback on invalid. Never trust raw model text downstream.&rdquo;</div><div class="cite">✓ .claude/agents/skeptic.md:13 &nbsp;&ldquo;3. **Poor validation** — LLM output consumed without parsing/schema checks, silent catch-and-continue, no fallback on invalid output.&rdquo;</div>
+<h3><span class="tag">low</span>Duplicated PR and Formatting Conventions</h3>
+<div>Instructions regarding conventional commits, auto-closing issue references, em-dash bans, and binary commit restrictions are repeated verbatim in both files.</div>
+<div class="cite">✓ AGENTS.md:160 &nbsp;&ldquo;Conventional-commit PR titles, lowercase subject (acronyms must be lowercased too).&rdquo;</div><div class="cite">✓ CLAUDE.md:162 &nbsp;&ldquo;Conventional-commit PR titles, lowercase subject (acronyms lowercased too).&rdquo;</div>
+</div><div class="f" style="--sv:#c0392b">
+<h3><span class="tag">high</span>Conflicting Git Sync Commands in Session Protocol</h3>
+<div>The 'Team-maintainer' git sync protocol in AGENTS.md includes a critical 'bd dolt push' command that is missing from the equivalent protocol in CLAUDE.md. This could lead to database/issue desynchronization if the CLAUDE.md version is followed.</div>
+<div class="cite">✓ AGENTS.md:219 &nbsp;&ldquo;bd dolt push&rdquo;</div><div class="cite">✓ CLAUDE.md:235 &nbsp;&ldquo;git push&rdquo;</div>
 </div><div class="f" style="--sv:#5d6d7e">
-<h3><span class="tag">low</span>Redundant Planning Time Constraints</h3>
-<div>The 3-5 minute planning window is defined in both the skill description and the skill's internal rules, creating redundant instructions for the same task.</div>
-<div class="cite">✓ .claude/skills/challenge-plan/SKILL.md:3 &nbsp;&ldquo;description: Rapid planning for the 40-min challenge — requirements → idea → architecture → acceptance criteria → implementation order. Target 3-5 min&rdquo;</div><div class="cite">✓ .claude/skills/challenge-plan/SKILL.md:21 &nbsp;&ldquo;- If planning exceeds 5 minutes, ship the current plan as-is.&rdquo;</div>
-</div><div class="f" style="--sv:#b9770e">
-<h3><span class="tag">medium</span>Contradictory Planning Duration</h3>
-<div>CLAUDE.md limits initial requirement inspection to 2-3 minutes, whereas the challenge-plan skill (which CLAUDE.md directs the user to use) allocates 5 minutes for the same phase.</div>
-<div class="cite">✓ CLAUDE.md:9 &nbsp;&ldquo;1. **Inspect requirements first** (2-3 min max) — read the brief fully before writing any code. Use `challenge-plan` skill.&rdquo;</div><div class="cite">✓ .claude/skills/challenge-plan/SKILL.md:8 &nbsp;&ldquo;Planning is a 3-5 minute sprint, not a document. Output goes at the top of CHALLENGE_LOG.md.&rdquo;</div>
+<h3><span class="tag">low</span>Redundant Node Test Runner Constraints</h3>
+<div>Both files contain the specific technical constraint that the Node test runner cannot parse JSX and therefore requires .ts extensions for imports.</div>
+<div class="cite">✓ AGENTS.md:142 &nbsp;&ldquo;it cannot parse JSX, so anything a test must import belongs in a `.ts`, not a `.tsx`.&rdquo;</div><div class="cite">✓ CLAUDE.md:36 &nbsp;&ldquo;Node test runner, which cannot parse JSX — anything a test imports must live in a `.ts` file, not `.tsx`.&rdquo;</div>
 </div>
 
 
 
 <h2>Stale references</h2>
-<p class="note">None — every referenced path resolves.</p>
+<div class="scroll"><table><tr><th>File</th><th>Line</th><th>Broken ref</th></tr>
+<tr><td><code>CLAUDE.md</code></td><td>188</td><td><code>./panel.ts</code></td></tr>
+</table></div><p class="note">Detected with <code>fs.existsSync</code>. No model involved, nothing to hallucinate.</p>
 
 <h2>Proposed cleanup</h2>
 <div class="scroll"><table><tr><th>Op</th><th>Target</th><th>Rationale</th><th>Est. saved</th></tr>
-<tr><td><span class="op" style="color:var(--accent)">MERGE</span></td><td><code>.claude/agents/skeptic.md</code></td><td>Fold the skeptic agent into the ship-check skill to resolve remit ambiguity and eliminate redundant validation instructions.</td><td>~400</td></tr><tr><td><span class="op" style="color:#c0392b">DELETE</span></td><td><code>.claude/agents/idea-critic.md</code></td><td>The challenge-plan skill already covers adversarial review of plans; a separate agent creates unnecessary overhead.</td><td>~361</td></tr><tr><td><span class="op" style="color:var(--accent)">SCOPE</span></td><td><code>.claude/skills/challenge-plan/SKILL.md</code></td><td>Restrict to planning phase and resolve the 3-5 minute vs 5 minute internal redundancy within the skill definition.</td><td>~50</td></tr><tr><td><span class="op" style="color:var(--accent)">SCOPE</span></td><td><code>CLAUDE.md</code></td><td>Remove redundant validation rules already in skills and resolve the 2-3 minute vs 5 minute planning duration contradiction by deferring to the skill.</td><td>~120</td></tr><tr><td><span class="op" style="color:#1e8449">KEEP</span></td><td><code>.claude/skills/ship-check/SKILL.md</code></td><td>Essential for final validation; will serve as the single source of truth for adversarial review after merging skeptic.</td><td>—</td></tr>
+<tr><td><span class="op" style="color:var(--accent)">MERGE</span></td><td><code>AGENTS.md</code></td><td>Consolidate all shared technical constraints (Node test runner, PR conventions) and the authoritative Git Sync protocol into a single source of truth to resolve the 'bd dolt push' contradiction.</td><td>~1,200</td></tr><tr><td><span class="op" style="color:var(--accent)">SCOPE</span></td><td><code>CLAUDE.md</code></td><td>Remove duplicated Beads integration blocks and technical constraints already covered in AGENTS.md; restrict this file to high-level persona and project-specific context only.</td><td>~1,800</td></tr><tr><td><span class="op" style="color:#c0392b">DELETE</span></td><td><code>CLAUDE.md:188</code></td><td>Remove stale reference to non-existent file ./panel.ts to prevent hallucination and reduce noise.</td><td>~15</td></tr>
 </table></div>
 
 <h2>Pipeline trace</h2>
-<div class="pipe">scan: 5 files, 0 stale refs (deterministic)
+<div class="pipe">scan: 2 files, 1 stale refs (deterministic)
 mapper(google/gemini-3-flash-preview): 4 raw findings
-simulator(deepseek/deepseek-v4-flash): 1 irrelevant always-on files
+simulator(deepseek/deepseek-v4-flash): 0 irrelevant always-on files
 verify: 4 confirmed, 0 killed for unverifiable citations (deterministic)
-architect(google/gemini-3-flash-preview): 5 cleanup actions</div>
+architect(google/gemini-3-flash-preview): 3 cleanup actions</div>
 <p class="note">Stages 1 and 4 are deterministic. Stages 2, 3 and 5 are models, each under a schema contract, and stage 4 exists to catch stage 2 lying.</p>
 </div>
