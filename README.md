@@ -47,6 +47,28 @@ validation step whose output you can't see isn't a validation step.
 Every hop is a zod contract with strict JSON-schema at the API layer and one retry that
 feeds the parse error back to the model.
 
+## Prior art, honestly
+
+This is not a new idea and I'm not going to pretend it is. `ccmd.dev` does token-bloat
+and contradiction analysis on a pasted CLAUDE.md. `claudelint` ships 116 rules across 10
+categories. `AgentLinter` and `cclint` do deterministic best-practice linting. If all you
+want is "is my CLAUDE.md too big", use one of those, they're further along.
+
+Two things here are actually different:
+
+**1. It looks at the roster, not just the root file.** Those tools are CLAUDE.md/AGENTS.md
+centric. Nobody is asking whether the nine agents and skills you've accumulated have
+colliding remits. Real example from `shapeshift/web`: `chain-integration` and
+`chain-integration-crew`, `qabot` and `qabot-fixture`, `translate` and
+`benchmark-translate`. Which one does the agent pick, and does it know why?
+
+**2. A rule engine has no hallucination problem because it never generates anything.**
+That's also its ceiling: it catches only what someone could express as a rule. Semantic
+contradiction across a 70-file roster needs a model. But a model's findings are worthless
+unless verified, which is why stage 4 exists. The pitch isn't "first to measure this",
+it's: rule linters catch what a rule can express, this catches what needs judgement and
+then proves the judgement wasn't invented.
+
 ## What it won't do
 
 - Token counts are `chars / 4`, labelled `est.` everywhere. It does not run the real tokenizer.
