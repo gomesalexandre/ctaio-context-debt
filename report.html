@@ -1,0 +1,98 @@
+<title>Context Debt Report</title>
+<style>
+:root{--bg:#fbfaf8;--fg:#1a1a1a;--mut:#6b6b6b;--line:#e2ddd5;--card:#fff;--accent:#b8501f}
+:root:not([data-theme=light]) @media (prefers-color-scheme:dark){}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#16161a;--fg:#ededed;--mut:#9a9a9a;--line:#2e2e36;--card:#1e1e24;--accent:#e0763f}}
+:root[data-theme=dark]{--bg:#16161a;--fg:#ededed;--mut:#9a9a9a;--line:#2e2e36;--card:#1e1e24;--accent:#e0763f}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 ui-serif,Georgia,serif;margin:0;padding:2.5rem 1.25rem}
+.wrap{max-width:860px;margin:0 auto}
+h1{font-size:2rem;margin:0 0 .2rem;letter-spacing:-.02em}
+h2{font-size:1.15rem;margin:2.5rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--line);font-family:ui-sans-serif,system-ui,sans-serif}
+.sub{color:var(--mut);font-size:.9rem;margin-bottom:2rem;font-family:ui-monospace,monospace}
+.score{display:flex;gap:1.5rem;align-items:baseline;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+.score b{font-size:3.2rem;line-height:1;color:var(--accent);font-family:ui-sans-serif,system-ui,sans-serif}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.75rem;margin:1rem 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.8rem 1rem}
+.stat i{display:block;font-style:normal;font-size:1.5rem;font-weight:600;font-family:ui-sans-serif,system-ui,sans-serif}
+.stat span{font-size:.72rem;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;font-family:ui-sans-serif,system-ui,sans-serif}
+.f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--sv);border-radius:8px;padding:1rem 1.1rem;margin:.7rem 0}
+.f h3{margin:0 0 .35rem;font-size:1rem;font-family:ui-sans-serif,system-ui,sans-serif}
+.tag{font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:#fff;background:var(--sv);padding:.14rem .5rem;border-radius:99px;font-family:ui-sans-serif,system-ui,sans-serif;vertical-align:middle;margin-right:.4rem}
+.cite{font-family:ui-monospace,monospace;font-size:.78rem;color:var(--mut);margin-top:.5rem;border-top:1px dashed var(--line);padding-top:.45rem}
+.killed{opacity:.62}
+table{width:100%;border-collapse:collapse;font-size:.86rem;font-family:ui-sans-serif,system-ui,sans-serif}
+td,th{text-align:left;padding:.42rem .5rem;border-bottom:1px solid var(--line)}
+th{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+code{font-family:ui-monospace,monospace;font-size:.83em;background:rgba(128,128,128,.13);padding:.08em .35em;border-radius:3px}
+.op{display:inline-block;min-width:62px;font-size:.68rem;font-weight:700;letter-spacing:.05em;font-family:ui-sans-serif,system-ui,sans-serif}
+.pipe{font-family:ui-monospace,monospace;font-size:.78rem;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1rem;white-space:pre-wrap;overflow-x:auto}
+.note{font-size:.83rem;color:var(--mut);font-style:italic}
+.scroll{overflow-x:auto}
+</style>
+<div class="wrap">
+<h1>Context Debt Report</h1>
+<div class="sub">. · 2026-08-21T09:18:54.183Z · 15415ms</div>
+
+<div class="score">
+  <b>59</b>
+  <div><div style="font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);font-family:ui-sans-serif,system-ui,sans-serif">Context debt score / 100</div>
+  <div class="note">Higher is healthier. Computed from measured tokens, verified findings and stale refs — not asked of a model.</div></div>
+</div>
+
+<div class="grid">
+  <div class="stat"><i>370</i><span>Always-on tokens (est.)</span></div>
+  <div class="stat"><i>100%</i><span>Irrelevant to this task</span></div>
+  <div class="stat"><i>0</i><span>Stale references</span></div>
+  <div class="stat"><i>4</i><span>Verified findings</span></div>
+  <div class="stat"><i>0</i><span>Hallucinations killed</span></div>
+</div>
+
+<h2>Inventory</h2>
+<div class="scroll"><table>
+<tr><th>Kind</th><th>Files</th><th>Est. tokens</th></tr>
+<tr><td><code>always-on</code></td><td>1</td><td>370</td></tr><tr><td><code>rule</code></td><td>0</td><td>0</td></tr><tr><td><code>agent</code></td><td>2</td><td>761</td></tr><tr><td><code>skill</code></td><td>2</td><td>802</td></tr>
+</table></div>
+
+<h2>Task simulation</h2>
+<p>For the task <b>&ldquo;add an authenticated API route with tests&rdquo;</b>, <code>deepseek/deepseek-v4-flash</code> judged these always-on files dead weight:</p>
+<p><code>CLAUDE.md</code></p>
+<p class="note">The task is a concrete implementation task. The agent and skill files are meta-level (critique, skepticism, planning, shipping checks) and do not inform how to write an API route or tests. CLAUDE.md is the only always-on file; it may contain project-specific conventions (e.g., authentication middleware, testing framework) that are directly relevant. However, per the instruction to be strict, even CLAUDE.md is likely dead weight for this single task unless it explicitly documents the authentication pattern or test setup. Given the inventory, no file is genuinely informative, but CLAUDE.md is the only candidate.</p>
+
+<h2>Verified findings</h2>
+<div class="f" style="--sv:#b9770e">
+<h3><span class="tag">medium</span>Overlapping Agent and Skill Responsibilities</h3>
+<div>The 'skeptic' agent and 'ship-check' skill both claim the remit of adversarial review and checking implementation before submission, creating ambiguity about which should lead the process.</div>
+<div class="cite">✓ .claude/agents/skeptic.md:3 &nbsp;&ldquo;description: Adversarially reviews the implementation and agent workflow before submission. Use during ship-check. Returns BLOCKER / IMPORTANT / NICE-&rdquo;</div><div class="cite">✓ .claude/skills/ship-check/SKILL.md:3 &nbsp;&ldquo;description: Pre-submission gate for the 40-min challenge — build/typecheck, exercise the real workflow, adversarial review, autonomous browser test, &rdquo;</div>
+</div><div class="f" style="--sv:#5d6d7e">
+<h3><span class="tag">low</span>Duplicated Validation Requirements</h3>
+<div>The requirement to validate LLM outputs and avoid 'vibes-based' or raw text consumption is stated in both the global CLAUDE.md and the specific skeptic agent instructions.</div>
+<div class="cite">✓ CLAUDE.md:12 &nbsp;&ldquo;4. **Validate generated outputs** — parse/schema-check every LLM output; retry-or-fallback on invalid. Never trust raw model text downstream.&rdquo;</div><div class="cite">✓ .claude/agents/skeptic.md:13 &nbsp;&ldquo;3. **Poor validation** — LLM output consumed without parsing/schema checks, silent catch-and-continue, no fallback on invalid output.&rdquo;</div>
+</div><div class="f" style="--sv:#5d6d7e">
+<h3><span class="tag">low</span>Redundant Planning Time Constraints</h3>
+<div>The 3-5 minute planning window is defined in both the skill description and the skill's internal rules, creating redundant instructions for the same task.</div>
+<div class="cite">✓ .claude/skills/challenge-plan/SKILL.md:3 &nbsp;&ldquo;description: Rapid planning for the 40-min challenge — requirements → idea → architecture → acceptance criteria → implementation order. Target 3-5 min&rdquo;</div><div class="cite">✓ .claude/skills/challenge-plan/SKILL.md:21 &nbsp;&ldquo;- If planning exceeds 5 minutes, ship the current plan as-is.&rdquo;</div>
+</div><div class="f" style="--sv:#b9770e">
+<h3><span class="tag">medium</span>Contradictory Planning Duration</h3>
+<div>CLAUDE.md limits initial requirement inspection to 2-3 minutes, whereas the challenge-plan skill (which CLAUDE.md directs the user to use) allocates 5 minutes for the same phase.</div>
+<div class="cite">✓ CLAUDE.md:9 &nbsp;&ldquo;1. **Inspect requirements first** (2-3 min max) — read the brief fully before writing any code. Use `challenge-plan` skill.&rdquo;</div><div class="cite">✓ .claude/skills/challenge-plan/SKILL.md:8 &nbsp;&ldquo;Planning is a 3-5 minute sprint, not a document. Output goes at the top of CHALLENGE_LOG.md.&rdquo;</div>
+</div>
+
+
+
+<h2>Stale references</h2>
+<p class="note">None — every referenced path resolves.</p>
+
+<h2>Proposed cleanup</h2>
+<div class="scroll"><table><tr><th>Op</th><th>Target</th><th>Rationale</th><th>Est. saved</th></tr>
+<tr><td><span class="op" style="color:var(--accent)">MERGE</span></td><td><code>.claude/agents/skeptic.md</code></td><td>Consolidate adversarial review logic by merging skeptic agent into ship-check skill to resolve remit ambiguity and remove redundant validation rules.</td><td>~400</td></tr><tr><td><span class="op" style="color:var(--accent)">SCOPE</span></td><td><code>CLAUDE.md</code></td><td>Restrict to high-level project identity; remove redundant validation requirements and contradictory planning durations that conflict with specific skills.</td><td>~120</td></tr><tr><td><span class="op" style="color:var(--accent)">MOVE</span></td><td><code>.claude/agents/idea-critic.md</code></td><td>Convert from always-on agent to an on-demand skill for architectural review, as it is irrelevant for standard implementation tasks like API routing.</td><td>~361</td></tr><tr><td><span class="op" style="color:#1e8449">KEEP</span></td><td><code>.claude/skills/challenge-plan/SKILL.md</code></td><td>Essential for structured task decomposition, though internal rules should be deduplicated to fix the 3-5 minute redundancy.</td><td>~50</td></tr><tr><td><span class="op" style="color:#1e8449">KEEP</span></td><td><code>.claude/skills/ship-check/SKILL.md</code></td><td>Primary mechanism for pre-submission verification; will absorb skeptic agent logic to become the single source of truth for adversarial review.</td><td>—</td></tr>
+</table></div>
+
+<h2>Pipeline trace</h2>
+<div class="pipe">scan: 5 files, 0 stale refs (deterministic)
+mapper(google/gemini-3-flash-preview): 4 raw findings
+simulator(deepseek/deepseek-v4-flash): 1 irrelevant always-on files
+verify: 4 confirmed, 0 killed for unverifiable citations (deterministic)
+architect(google/gemini-3-flash-preview): 5 cleanup actions</div>
+<p class="note">Stages 1 and 4 are deterministic. Stages 2, 3 and 5 are models, each under a schema contract, and stage 4 exists to catch stage 2 lying.</p>
+</div>

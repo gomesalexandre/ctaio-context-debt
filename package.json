@@ -1,0 +1,19 @@
+{
+  "name": "context-debt",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Measure the context debt in an agentic coding setup — CLAUDE.md, .claude/agents, .claude/skills",
+  "scripts": {
+    "scan": "bun run src/index.ts",
+    "typecheck": "bunx tsc --noEmit",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "typescript": "^6.0.3"
+  }
+}
