@@ -1,0 +1,147 @@
+<title>Context Debt</title>
+<style>
+:root{--bg:#fbfaf8;--fg:#1a1a1a;--mut:#6b6b6b;--line:#e2ddd5;--card:#fff;--accent:#b8501f;--ok:#1e8449;--bad:#c0392b}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#16161a;--fg:#ededed;--mut:#9a9a9a;--line:#2e2e36;--card:#1e1e24;--accent:#e0763f;--ok:#4ade80;--bad:#f87171}}
+:root[data-theme=dark]{--bg:#16161a;--fg:#ededed;--mut:#9a9a9a;--line:#2e2e36;--card:#1e1e24;--accent:#e0763f;--ok:#4ade80;--bad:#f87171}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:17px/1.65 ui-serif,Georgia,serif;margin:0;padding:3rem 1.25rem}
+.w{max-width:840px;margin:0 auto}
+h1{font-size:2.6rem;margin:0 0 .3rem;letter-spacing:-.03em}
+h2{font-size:1.2rem;margin:3rem 0 .9rem;padding-bottom:.4rem;border-bottom:1px solid var(--line);font-family:ui-sans-serif,system-ui,sans-serif}
+.lede{font-size:1.15rem;color:var(--mut);margin:0 0 1.6rem}
+.pill{display:inline-block;font-family:ui-monospace,monospace;font-size:.74rem;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:.25rem .7rem;margin:0 .3rem .4rem 0}
+a{color:var(--accent)}
+figure{margin:1.2rem 0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.6rem;overflow:hidden}
+figure img{width:100%;display:block;border-radius:6px}
+figcaption{font-size:.83rem;color:var(--mut);font-style:italic;padding:.55rem .3rem 0}
+table{width:100%;border-collapse:collapse;font-size:.88rem;font-family:ui-sans-serif,system-ui,sans-serif}
+td,th{text-align:left;padding:.45rem .5rem;border-bottom:1px solid var(--line)}
+th{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+code{font-family:ui-monospace,monospace;font-size:.84em;background:rgba(128,128,128,.13);padding:.1em .35em;border-radius:3px}
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem;margin:1.2rem 0}
+.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.7rem .85rem}
+.st b{display:block;font-family:ui-sans-serif,system-ui,sans-serif;font-size:.95rem}
+.st span{font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;font-family:ui-sans-serif,system-ui,sans-serif}
+.det{color:var(--ok)} .mod{color:var(--accent)}
+blockquote{margin:1rem 0;padding:.8rem 1.1rem;border-left:3px solid var(--accent);background:var(--card);border-radius:0 8px 8px 0;font-size:.95rem}
+.scroll{overflow-x:auto}
+.note{font-size:.87rem;color:var(--mut);font-style:italic}
+</style>
+<div class="w">
+
+<h1>Context Debt</h1>
+<p class="lede">Your agent setup has debt. Here's the number.</p>
+
+<span class="pill">bun + typescript</span><span class="pill">openrouter</span><span class="pill">gemini-3-flash</span><span class="pill">deepseek-v4-flash</span><span class="pill">zod contracts</span>
+
+<p><code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>.claude/agents/</code>, <code>.claude/skills/</code>,
+<code>.claude/commands/</code> accumulate for months and nobody ever prunes one. This measures what
+that pile costs you on every turn, and which parts contradict each other, repeat each other, or
+point at files that no longer exist.</p>
+
+<p><a href="https://github.com/gomesalexandre/ctaio-context-debt">Source on GitHub &rarr;</a>
+&nbsp;·&nbsp; runs locally, <code>bun run src/server.ts</code></p>
+
+<h2>The pipeline</h2>
+<div class="stages">
+<div class="st"><b>1. scan</b><span class="det">deterministic</span></div>
+<div class="st"><b>2. mapper</b><span class="mod">gemini-3-flash</span></div>
+<div class="st"><b>3. simulator</b><span class="mod">deepseek-v4-flash</span></div>
+<div class="st"><b>4. verify</b><span class="det">deterministic</span></div>
+<div class="st"><b>5. architect</b><span class="mod">gemini-3-flash</span></div>
+</div>
+
+<p>Stage 3 runs a different vendor from stage 2 on purpose, so the second opinion isn't the same
+brain grading its own homework. Every hop is a zod contract with strict JSON-schema at the API
+layer and one retry that feeds the parse error back to the model.</p>
+
+<p><b>Stage 4 is the load-bearing idea.</b> A model will happily invent a contradiction that reads
+perfectly and cite a line saying nothing of the sort. So the pipeline doesn't ask another model
+whether to believe it. It reopens the file and checks the quote. Findings whose evidence isn't
+there get killed, and the kill list is rendered in the report, because a validation step whose
+output you can't see isn't a validation step.</p>
+
+<h2>Running against Anthropic's own repo</h2>
+
+<figure>
+  <img src="https://files.catbox.moe/zbsdy1.png" alt="Landing page">
+  <figcaption>Paste a public repo. It reads only CLAUDE.md, AGENTS.md and .claude/**.</figcaption>
+</figure>
+
+<figure>
+  <img src="https://files.catbox.moe/cg0dw3.png" alt="Stage tracker mid-run">
+  <figcaption>Mid-run. Each stage is labelled deterministic or model, so the handoffs are legible
+  instead of hidden behind a spinner. This is the point of the product.</figcaption>
+</figure>
+
+<figure>
+  <img src="https://files.catbox.moe/bpnt67.png" alt="Full report">
+  <figcaption>Finished report: score, measured tokens, verified findings with citations, kill list,
+  cleanup plan.</figcaption>
+</figure>
+
+<figure>
+  <img src="https://files.catbox.moe/y85s2y.png" alt="Error state">
+  <figcaption>Failure path. A repo that doesn't exist gets a real message, not a dead spinner.</figcaption>
+</figure>
+
+<h2>What it actually found</h2>
+<p>A genuine <b>HIGH</b> contradiction in <code>anthropics/claude-code</code>, both citations
+machine-verified against the files:</p>
+<blockquote>
+<b>Conflicting git tooling requirements.</b> <code>commit-push-pr.md</code> allows raw <code>gh</code>
+and <code>git</code> in its <code>allowed-tools</code>. <code>dedupe.md:21</code> says
+&ldquo;Use <code>./scripts/gh.sh</code> to interact with Github, rather than web fetch or raw
+<code>gh</code>.&rdquo; Two commands in one repo, opposite instructions.
+</blockquote>
+<p>And the roster-overlap case the CLAUDE.md-focused linters don't look for: <code>dedupe</code> and
+<code>triage-issue</code> both claim duplicate-issue detection using the same search tools. In
+<code>shapeshift/web</code>: <code>chain-integration</code> vs <code>chain-integration-crew</code>,
+<code>qabot</code> vs <code>qabot-fixture</code>, <code>translate</code> vs
+<code>benchmark-translate</code>. Which one does the agent pick, and does it know why?</p>
+
+<h2>Real runs</h2>
+<div class="scroll"><table>
+<tr><th>target</th><th>files</th><th>est. tokens</th><th>stale refs</th><th>score</th></tr>
+<tr><td><code>anthropics/claude-code</code></td><td>3</td><td>2,000</td><td>0</td><td>74/100</td></tr>
+<tr><td><code>shapeshift/web</code></td><td>68</td><td>102,958</td><td>13</td><td>52/100</td></tr>
+<tr><td>this repo</td><td>5</td><td>1,933</td><td>0</td><td>59/100</td></tr>
+</table></div>
+
+<h2>Where it broke</h2>
+<p>Three separate false positives, all from the check I'd described as
+&ldquo;deterministic, nothing to hallucinate&rdquo;.</p>
+<ol>
+<li><code>.claude/commands/</code> wasn't classified, so a repo organising context as slash-commands
+scanned as <i>empty</i>. It reported a bug in my scanner as a fact about the repo.</li>
+<li>I sparse-cloned <code>shapeshift/web</code>, so <code>.claude/</code> was never fetched and every
+referenced path looked deleted. 9 confident false positives. Now it refuses to run on a partial tree.</li>
+<li><code>./scripts/gh.sh</code> in <code>.claude/commands/dedupe.md</code> was resolved relative to the
+markdown file rather than the repo root, where slash-commands actually run. All 28 refs in
+<code>anthropics/claude-code</code> flagged broken while <code>scripts/gh.sh</code> sat in the tree.
+<b>28 &rarr; 0</b>, score 54 &rarr; 74.</li>
+</ol>
+<p>The honest lesson: determinism bought reproducibility, not correctness. A rule that is confidently
+wrong is worse than a model that is uncertain, because nobody thinks to audit the rule.</p>
+
+<h2>Prior art</h2>
+<p>Not a new idea and I won't pretend otherwise. <code>ccmd.dev</code> does token-bloat and
+contradiction analysis on a pasted CLAUDE.md. <code>claudelint</code> ships 116 rules.
+<code>AgentLinter</code> ships 51 checks. If you just want &ldquo;is my CLAUDE.md too big&rdquo;, use
+one of those, they're further along.</p>
+<p>Two things here differ. Those tools are root-file centric and don't examine whether your accumulated
+agents and skills have colliding remits. And a rule engine can't hallucinate because it never
+generates, which is also its ceiling: it catches only what someone could express as a rule. Semantic
+contradiction across seventy files needs a model, and a model's findings are worthless unless
+verified. Rule linters catch what a rule can express; this catches what needs judgement, then proves
+the judgement wasn't invented.</p>
+
+<h2>Known gaps</h2>
+<p>The kill gate never fired across these runs. Zero hallucinated citations means I've proven the kill
+path <i>runs</i>, not that it <i>bites</i>. Next step is fuzzing it with a deliberately hallucinating
+model so the kill list is a receipt rather than a claim. Token counts are <code>chars / 4</code>,
+labelled est. everywhere. No weekly diff mode yet, which is the actual product.</p>
+
+<p class="note">Built in a timed window. Everything above was driven in a browser and screenshotted,
+not described.</p>
+</div>

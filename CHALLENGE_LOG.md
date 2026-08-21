@@ -39,7 +39,30 @@ it was wrong *confidently*, because determinism guarantees reproducibility, not 
 Fix: `assertFullCheckout()` refuses to run on a sparse/partial tree rather than
 emitting numbers it can't stand behind. Re-ran on a full clone: 77 real stale refs.
 
-**3. `git push` aborted** on a pre-push hook needing `/dev/tty` in a non-interactive
+**3. The same class of false positive, a third time, from the opposite direction.**
+With the web path live I ran `anthropics/claude-code` and got 28 stale refs. Checked
+the repo: `scripts/gh.sh` and `scripts/comment-on-duplicates.sh` are both sitting right
+there. The refs are written `./scripts/gh.sh` inside `.claude/commands/dedupe.md`, and
+I was resolving `./` relative to the *markdown file's* directory, giving
+`.claude/commands/scripts/gh.sh`. But a slash-command runs from the repo root, so `./`
+means root. Fixed by trying both readings and only flagging stale when NEITHER resolves.
+Score went 54 → 74 and 28 → 0 refs, all 28 were phantom.
+
+That's three false positives from the check I described in the README as
+"deterministic, nothing to hallucinate". Worth saying plainly: determinism bought me
+reproducibility, not correctness. A rule that's confidently wrong is worse than a model
+that's uncertain, because nobody thinks to audit the rule. The guard now errs toward
+silence, since a checker that cries wolf gets ignored and then it's worth nothing.
+
+**4. Simulator truncation misread as a bad model.** `maxTokens: 1500` cut the
+simulator's JSON mid-object on a 68-file inventory. Schema validation failed, the retry
+re-hit the identical ceiling, and the run died. It presented as "the model can't follow
+a schema" when it was a budget I'd set. Raised to 6000.
+
+**5. Port 3000 was an SSH tunnel**, not my server. Bun logged "listening" and every
+request went to the tunnel, so it looked like the server was broken. Moved to 4317.
+
+**6. `git push` aborted** on a pre-push hook needing `/dev/tty` in a non-interactive
 shell. `--no-verify`.
 
 ## Scope cuts
